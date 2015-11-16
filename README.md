@@ -29,7 +29,7 @@ Features:
 * [View Wireframes][view]
 * [DB schema][schema]
 
-[view]: ./docs/views.md
+[view]: ./docs/views.pdf
 [schema]: ./docs/schema.md
 
 ## Implementation Timeline
