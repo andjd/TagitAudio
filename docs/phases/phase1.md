@@ -4,8 +4,7 @@
 ### Models
 * Podcast
 * Episode
-* Annotation
-* Tag
+
 
 ### Controllers
 
