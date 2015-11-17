@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Podcast.digest_rss_feed("http://www.macobserver.com/rss/dailyobservations_mp3.xml")
+Podcast.digest_rss_feed("http://ludology.libsyn.com/rss")
