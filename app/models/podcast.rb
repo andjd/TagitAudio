@@ -26,6 +26,7 @@ class Podcast < ActiveRecord::Base
       ep = feed.entries[idx]
 
       e = p.episodes.new( title: ep.title,
+                          mime_type: ep.enclosure_type,
                           feedjira_id: ep.entry_id,
                           description: ep.summary,
                           episode_url: ep.enclosure_url,
