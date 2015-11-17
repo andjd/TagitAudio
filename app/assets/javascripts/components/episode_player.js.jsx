@@ -10,7 +10,7 @@
     render: function () {
       return (
         <article className="player">
-          <TA.EpisodeImage episode={ep}/>
+          <TA.EpisodeImage episode={ep} />
           <TA.PlayButton episode={ep} />
           <TA.EpisodeInfo episode={ep} />
           <TA.ProgressBar episode={ep} />

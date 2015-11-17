@@ -8,10 +8,11 @@
   var Route = ReactRouter.Route;
 
   $(document).ready(function() {
+
     React.render(
       (
         <Router>
-        <Route path="/" component={TA.EpisodePlayer} />,
+          <Route path="/" component={TA.EpisodePlayer} />
         </Router>
       ),
       document.getElementById("react")
