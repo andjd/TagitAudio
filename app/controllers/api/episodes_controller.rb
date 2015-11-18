@@ -1,12 +1,11 @@
 class Api::EpisodesController < ApplicationController
   def index
-    eps = Episode.all
-
-    render json: eps
+    @eps = Episode.all
+    render :index
   end
 
   def show
-    ep = Episode.find(params[:id])
-    render json: ep
+    @eps = [Episode.find(params[:id])]
+    render :index
   end
 end
