@@ -4,8 +4,7 @@
 
   TA.EpisodeImage = React.createClass ({
       render: function() {
-        debugger
-        return(<img src={this.props.episode.podcast.image_url} alt="" />);
+        return(<img src={this.props.parent.props.episode.podcast.image_url} alt="" />);
       }
 
   });

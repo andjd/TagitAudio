@@ -1,4 +1,5 @@
 json.array! @eps do |episode|
+  json.episode_id episode.id
   json.title episode.title
   json.episode_url episode.episode_url
   json.description episode.description

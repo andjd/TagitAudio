@@ -16,4 +16,5 @@
 //= require eventemitter
 //= require react
 //= require react_router.js
+//= require wavesurfer.js
 //= require_tree .
