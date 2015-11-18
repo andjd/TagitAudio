@@ -39,12 +39,35 @@
   'use strict';
   var TA = root.TA = root.TA || {};
 
+
+
   TA.ProgressBar = React.createClass ({
+
+    componentDidUpdate: function () {
+      var player = React.findDOMNode(this.refs.player);
+
+      if (this.props.playing) {
+        player.play();
+      } else {
+        player.pause();
+      }
+
+      player.playbackRate = this.props.options.playback_speed;
+      player.volume = this.props.options.volume;
+      player.muted = this.props.options.muted;
+
+    },
+
+
+
+
+
     render: function () {
+
       return (
-        <audio controls="controls">
-          <source src={this.props.parent.props.episode.episode_url}
-                  type={this.props.parent.props.episode.mime_type} />
+        <audio controls="controls" ref="player">
+          <source src={this.props.episode.episode_url}
+                  type={this.props.episode.mime_type} />
         </audio>
       );
     }

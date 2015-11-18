@@ -4,7 +4,7 @@
 
   var _options = {
     playing: null,
-    volume: 8,
+    volume: 1,
     playback_speed: 1,
     muted: false
   };

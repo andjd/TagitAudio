@@ -6,7 +6,7 @@
     render: function () {
 
       return(
-        <button onClick={TA.Actions.Audio.startPlayback(this.props.parent.props.episode.episode_id)} disabled = {this.props.playing} >
+        <button onClick={TA.Actions.Audio.startPlayback(this.props.episode.episode_id)} disabled = {this.props.playing} >
           Play
         </button>
       );

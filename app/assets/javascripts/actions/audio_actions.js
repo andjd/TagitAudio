@@ -14,6 +14,13 @@
           options: { playing: id }
         });
       };
+    },
+
+    updatePlaybackOptions: function(options) {
+      TA.Dispatcher.dispatch({
+        actionType: TA.Constants.PLAYBACK_CHANGE,
+        options: options
+      });
     }
   };
 
