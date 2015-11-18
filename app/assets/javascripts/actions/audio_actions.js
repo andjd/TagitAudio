@@ -11,7 +11,7 @@
       return function () {
         TA.Dispatcher.dispatch ({
           actionType: TA.Constants.PLAYBACK_CHANGE,
-          payload: {options: { id: id }}
+          options: { playing: id }
         });
       };
     }

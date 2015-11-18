@@ -24,11 +24,11 @@
     },
 
     render: function () {
-
+      var currently_playing = (this.state.options.playing === this.props.episode.episode_id)
       return (
         <article className="player">
           <TA.EpisodeImage parent={this} />
-          <TA.PlayButton parent={this} />
+          <TA.PlayButton parent={this} playing={currently_playing} />
           <TA.EpisodeInfo parent={this} />
           <TA.ProgressBar parent={this} />
         </article>

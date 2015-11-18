@@ -10,6 +10,7 @@
   };
 
   var updateOptions = function (options) {
+
     Object.keys(options).forEach(function (option){
       _options[option] = options[option];
     });
@@ -33,8 +34,8 @@
     dispactherID: TA.Dispatcher.register(function (payload) {
       switch (payload.actionType) {
         case TA.Constants.PLAYBACK_CHANGE:
-          updateOptions(payload);
-          if (payload.playing) {
+          updateOptions(payload.options);
+          if (payload.options.playing) {
             TA.PlaybackOptionsStore.emit(OPTIONS_UPDATE);
           }
           break;
