@@ -8,12 +8,17 @@
 
   Actions.Audio = {
     startPlayback: function(id) {
-      return function () {
         TA.Dispatcher.dispatch ({
           actionType: TA.Constants.PLAYBACK_CHANGE,
           options: { playing: id }
         });
-      };
+    },
+
+    pausePlayback: function () {
+      TA.Dispatcher.dispatch ({
+        actionType: TA.Constants.PLAYBACK_CHANGE,
+        options: { playing: -1 }
+      });
     },
 
     updatePlaybackOptions: function(options) {

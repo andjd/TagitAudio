@@ -19,7 +19,7 @@
       var key = Object.keys(options)[0];
       newOptions[key] = options[key];
       this.setState({options: newOptions});
-      // TA.Actions.Audio.updatePlaybackOptions(options);
+      TA.Actions.Audio.updatePlaybackOptions(options);
     },
 
     componentWillMount: function () {

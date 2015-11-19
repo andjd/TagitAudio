@@ -22,7 +22,7 @@
     },
 
     newEpisodes: function () {
-      debugger
+
       this.setState({episodes: TA.EpisodesStore.all()});
     },
 
