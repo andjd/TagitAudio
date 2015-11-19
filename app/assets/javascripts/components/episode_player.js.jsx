@@ -10,15 +10,15 @@
     },
 
     updatePlaybackOptions: function () {
-      debugger
       this.setState({ options: TA.PlaybackOptionsStore.options() });
     },
 
     localUpdatePlaybackOptions: function (options) {
-      debugger
-      var new_options = $.extend({}, this.state.options);
-      new_options[Object.keys(options)[0]] = options[Object.keys(options)[0]];
-      this.setState(new_options);
+
+      var newOptions = $.extend({}, this.state.options);
+      var key = Object.keys(options)[0];
+      newOptions[key] = options[key];
+      this.setState({options: newOptions});
       // TA.Actions.Audio.updatePlaybackOptions(options);
     },
 

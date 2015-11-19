@@ -7,34 +7,35 @@
       return this.props.options;
     },
 
-    componentWillRecieveProps: function(newProps) {
-      setState(newProps.options);
+    componentWillReceiveProps: function(newProps) {
+      this.setState(newProps.options);
     },
 
     muteToggle: function (e) {
+
       e.preventDefault();
-      this.props.callback({muted: !this.props.muted});
+      this.props.callback({muted: !this.props.options.muted});
     },
 
     speedUpdate: function (e) {
-      debugger
+
       e.preventDefault();
       this.props.callback({playback_speed: parseFloat(e.currentTarget.value)});
     },
 
     volumeUpdate: function (e) {
       e.preventDefault();
-      this.props.callback({volume: e.currentTarget.value});
+      this.props.callback({volume: parseFloat(e.currentTarget.value)});
     },
 
     render: function () {
       return(<span>
-        <button onClick={this.muteToggle}>{(this.state.muted ? "unmute" : "mute")}</button>
+        <button onClick={this.muteToggle} >{(this.state.muted) ? "unmute" : "mute"}</button>
         <label>playback speed
-          <input type='number' max="2" min="0.25" onChange={this.speedUpdate}  />
+          <input type='number' max="2" min="0.25" onChange={this.speedUpdate} />
         </label>
         <label> volume
-          <input type="number" max="1" min="0" onChange={this.volumeUpdate} value={this.state.volume}/>
+          <input type="number" max="1" min="0" onChange={this.volumeUpdate} />
         </label>
       </span>);
     }
