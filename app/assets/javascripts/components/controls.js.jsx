@@ -30,12 +30,12 @@
 
     render: function () {
       return(<span>
-        <button onClick={this.muteToggle} >{(this.state.muted) ? "unmute" : "mute"}</button>
-        <label>playback speed
-          <input type='range' max="2" min="0.5" step="0.01" value={this.state.playback_speed} onChange={this.speedUpdate} />
+        <button className="control-el" onClick={this.muteToggle} >{(this.state.muted) ? "🔈" : "🔇"}</button>
+        <label className="control-el" >🚀
+          <input className="slider" type='range' max="2" min="0.5" step="0.25" value={this.state.playback_speed} onChange={this.speedUpdate} />
         </label>
-        <label> volume
-          <input type="range" max="1" min="0" step="0.01"value={this.state.volume}  onChange={this.volumeUpdate} />
+        <label className="control-el" >📶
+          <input className="slider" type="range" max="1" min="0" step="0.01"value={this.state.volume}  onChange={this.volumeUpdate} />
         </label>
       </span>);
     }
