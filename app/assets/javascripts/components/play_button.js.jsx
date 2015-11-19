@@ -11,12 +11,26 @@
       }
     },
 
+    handleHover: function () {
+      if (this.props.playing) {
+        TA.Actions.Audio.pausePlayback();
+      }
+    },
+
     render: function () {
 
       return(
-        <button onClick={this.handleClick}>
-          { (this.props.playing) ? "Pause" : "Play" }
-        </button>
+        <div className='controls'>
+          <button className="control-el play-button" onClick={this.handleClick}   onHover="handleHover">
+            { (this.props.playing) ? "⨀" : "➤" }
+          </button>
+          {(this.props.playing) ? (
+            <TA.Controls  episode={this.props.episode}
+                        options={this.props.options}
+                        callback={this.props.callback}
+                          />
+            ) : null }
+        </div>
       );
     }
 

@@ -35,14 +35,13 @@
     render: function () {
       var currently_playing = (this.state.options.playing === this.props.episode.episode_id);
       return (
-        <article className="player">
+        <article className="player container">
           <TA.EpisodeImage episode={this.props.episode} />
           <TA.PlayButton   episode={this.props.episode}
-                           playing={currently_playing}/>
-          <TA.EpisodeInfo  episode={this.props.episode} />
-          <TA.Controls     episode={this.props.episode}
+                           playing={currently_playing}
                            options={this.state.options}
-                           callback={this.localUpdatePlaybackOptions} />
+                           callback={this.localUpdatePlaybackOptions}/>
+          <TA.EpisodeInfo  episode={this.props.episode} />
           <TA.ProgressBar  episode={this.props.episode}
                            options={this.state.options}
                            playing={currently_playing} />

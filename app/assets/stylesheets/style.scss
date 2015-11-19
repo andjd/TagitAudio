@@ -1,0 +1,104 @@
+// reset
+html, body, article, div, span, button, input,
+h1, h2, h3, h4, h5, h6, header,  p, strong, em, a {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: inherit;
+  font: inherit;
+  text-decoration: inherit;
+  text-align: inherit;
+  color: inherit;
+  background: transparent;
+}
+
+$serif: 'Quattrocento', serif;
+$sans: 'Quattrocento Sans', sans-serif;
+$img-height: 150px;
+$player-padding: 10px;
+
+.player > img {
+  top: 0;
+  left: 0;
+  height: $img-height;
+  width: $img-height;
+  float: left;
+  margin-left: -$player-padding;
+  margin-top: -$player-padding;
+}
+
+body
+
+.container::after {
+  pointer-events: none;
+  content: "";
+  display: block;
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  height: 100%;
+  width: 100%;
+  border-top: 15px solid rgba(0, 0, 0, 0.35);
+  border-left: 15px solid rgba(0, 0, 0, 0.35);
+  border-radius: inherit;
+}
+
+.player {
+  position: relative;
+  background: lightcyan;
+  margin: 20px;
+  padding: $player-padding;
+  border-top: 1px solid rgba(0, 0, 0, 0.75);
+  border-left: 1px solid rgba(0, 0, 0, 0.75);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+  border-right: 2px solid rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.play-button {
+
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 0 solid rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  float: left;
+  color: white;
+}
+.control-el {
+  z-index: 10;
+  margin: 10px;
+  height: 25px;
+  width: 25px;
+  text-align: center;
+
+
+}
+
+.control-el:hover {
+  background-color: rgba(0, 0, 0, 0.7)
+}
+
+.player > header {
+  height: $img-height;
+  overflow: hidden;
+}
+
+h3, h4 {
+  font-family: $serif;
+  font-size: 16px;
+}
+
+h3 {
+  font-weight: 700;
+}
+
+h5 {
+  font-family: $sans;
+  font-size: 12px;
+}
+
+h3, h4, h5 {
+  margin: 8px;
+}
