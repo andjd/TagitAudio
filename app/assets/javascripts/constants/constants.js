@@ -4,7 +4,10 @@
 
   TA.Constants = TA.Constants || {};
 
-  TA.Constants.PLAYBACK_CHANGE = "playback"
+  TA.Constants = {
+    PLAYBACK_CHANGE: "playback",
+    EPISODES_RECD: "newEpisodes"
+  };
 
 
 }(this));

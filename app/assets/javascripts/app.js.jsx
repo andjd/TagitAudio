@@ -12,8 +12,29 @@
   var ep = EpisodeStub;
 
   var App = React.createClass({
+    getInitialState: function (){
+      return {episodes: []};
+    },
+
+    componentDidMount: function () {
+      TA.AjaxUtil.API.fetchEpisodes();
+      TA.EpisodesStore.addListener(this.newEpisodes);
+    },
+
+    newEpisodes: function () {
+      debugger
+      this.setState({episodes: TA.EpisodesStore.all()});
+    },
+
     render: function () {
-      return (<TA.EpisodePlayer episode={ep} />);
+      return (
+        <div className="playerList">
+          { this.state.episodes.map(function (ep) {
+            return (<TA.EpisodePlayer key={ep.episode_id }episode={ep} />);
+            })
+          }
+        </div>
+      );
     }
   });
 
