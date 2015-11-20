@@ -6,7 +6,8 @@
 
   TA.Constants = {
     PLAYBACK_CHANGE: "playback",
-    EPISODES_RECD: "newEpisodes"
+    EPISODES_RECD: "new episodes",
+    ANNOTATIONS_RECD: "new annotations"
   };
 
 
