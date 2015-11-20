@@ -19,12 +19,14 @@
 
     render: function () {
         var ans = this.state.annotations;
-        console.log(ans);
       return (
         <ol className="annotations">
           {ans && ans.map(function (el) {
-            return(<span>{el.body}</span>);}
-          )}
+          return( <TA.AnnotationMarker  key={el.annotation_id}
+                                        episode={this.props.episode}
+                                        annotation={el} />
+                );
+          }.bind(this))}
         </ol>
       );
     }
@@ -32,7 +34,3 @@
   });
 
 }(this));
-
-// <TA.AnnotationMarker key=""
-//                          episode={this.props.episode}
-//                          annotation={el} />);

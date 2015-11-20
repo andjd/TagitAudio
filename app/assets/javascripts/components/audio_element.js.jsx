@@ -1,39 +1,3 @@
-//New Version: requires proxy-serving of audio assets.
-
-/*(function(root) {
-  'use strict';
-  var TA = root.TA = root.TA || {};
-
-  TA.ProgressBar = React.createClass ({
-    audio: Object.create(WaveSurfer),
-
-
-    componentDidMount: function () {
-      var options = {
-        container     : React.findDOMNode(this.refs.progbar),
-        waveColor     : 'violet',
-        progressColor : 'purple',
-        cursorColor   : 'navy'
-      };
-
-      this.audio.init(options);
-      this.audio.load('/api/episodes/' + this.props.episode.episode_id + '/audio');
-    },
-
-
-
-
-    render: function () {
-      return (
-        <div className="progress-bar" ref={"progbar"} />
-      );
-    }
-  });
-
-}(this));
-*/
-
-// Old Version
 
 (function(root) {
   'use strict';
@@ -41,27 +5,45 @@
 
 
 
-  TA.AudioElement = React.createClass ({
+  TA.AudioElement = React.createClass({
+
     componentDidMount: function () {
+      this.player = React.findDOMNode(this.refs.player);
       this.setPlayerSettings();
+      this.props.callback({duration: this.audioDuration});
+      this.interval = setTimeout(this.updatePlaybackPos);
     },
 
+    componentWillUnmount: function () {
+      clearInterval(this.interval);
+    },
+
+    updatePlaybackPos: function () {
+      this.props.callback( {playbackPos: this.playbackPos} );
+    },
+      
     componentDidUpdate: function() {
       this.setPlayerSettings();
     },
 
-    setPlayerSettings: function () {
-      var player = React.findDOMNode(this.refs.player);
+    audioDuration: function () {
+      return this.player.duration;
+    },
 
+    playbackPos: function () {
+      return this.player.currentTime / this.audioDuration;
+    },
+
+    setPlayerSettings: function () {
       if (this.props.playing) {
-        player.play();
+        this.player.play();
       } else {
-        player.pause();
+        this.player.pause();
       }
 
-      player.playbackRate = this.props.options.playback_speed;
-      player.volume = this.props.options.volume;
-      player.muted = this.props.options.muted;
+      this.player.playbackRate = this.props.options.playback_speed;
+      this.player.volume = this.props.options.volume;
+      this.player.muted = this.props.options.muted;
 
     },
 

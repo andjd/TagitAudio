@@ -38,7 +38,7 @@
                         options={this.props.options}
                         callback={this.props.callback}
                           />
-            ) : null }
+            ) : "" }
         </div>
       );
     }

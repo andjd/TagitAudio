@@ -1,4 +1,5 @@
 json.array! @annotations do |ann|
+  json.annotation_id ann.id
   json.body ann.body
   json.time ann.time
   json.episode_id ann.episode_id

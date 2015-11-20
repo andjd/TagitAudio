@@ -6,12 +6,17 @@
 
   TA.EpisodePlayer = React.createClass ({
     getInitialState: function () {
-      return { options: {} };
+      return { options: {}, playbackPos: {}, duration: {} };
     },
 
     updatePlaybackOptions: function () {
       this.setState({ options: TA.PlaybackOptionsStore.options() });
     },
+
+    audioStateUpdate: function (newState) {
+      this.setState(newState);
+    },
+
 
     localUpdatePlaybackOptions: function (options) {
 
@@ -49,15 +54,17 @@
             <TA.AnnotationsIndex episode={this.props.episode} />
             {(currently_playing) ? (
               <TA.AnnotationView episode={this.props.episode} />
-            ) : null }
+            ) : "" }
           </div>
 
 
           {(currently_playing) ? (
             <TA.AudioElement episode={this.props.episode}
                              options={this.state.options}
-                             playing={currently_playing} />
-            ) : null }
+                             playing={currently_playing}
+                             callback={this.audioStateUpdate}
+                             />
+            ) : "" }
         </article>
       );
     },
