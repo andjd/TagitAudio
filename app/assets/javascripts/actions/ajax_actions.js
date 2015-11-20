@@ -13,6 +13,7 @@
     },
 
     recAnnotations: function (stuff) {
+
       TA.Dispatcher.dispatch ({
         actionType: TA.Constants.ANNOTATIONS_RECD,
         episode_id: stuff.episode_id,

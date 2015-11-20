@@ -46,10 +46,10 @@
           </div>
           <div className="player-bottom">
             <TA.ProgressBar   episode={this.props.episode} />
-              <TA.AnnotaionsIndex episode={this.props.episode} />
-              {(currently_playing) ? (
-                <TA.AnnotationView episode={this.props.episode} />
-                ) : null }
+            <TA.AnnotationsIndex episode={this.props.episode} />
+            {(currently_playing) ? (
+              <TA.AnnotationView episode={this.props.episode} />
+            ) : null }
           </div>
 
 

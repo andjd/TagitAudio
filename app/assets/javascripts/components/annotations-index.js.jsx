@@ -4,17 +4,35 @@
 
   TA.AnnotationsIndex = React.createClass ({
     getInitialState: function () {
-      //fetch episode annotations
+      return {annotations: TA.EpisodesStore.getAnnotations(this.props.episode.episode_id)};
     },
-    render: function () {(
-      <ol className="annotations">
-        {this.state.annotations.map(function (el) {
-          return(<TA.AnnotationMarker key=""
-                                   episode={this.props.episode}
-                                   annotation={el} />);
-        })}
-      </ol>);
+
+    newAnnotations: function () {
+      this.setState({annotations: TA.EpisodesStore.getAnnotations(this.props.episode.episode_id)});
+    },
+
+
+    componentDidMount: function() {
+      TA.AjaxUtil.API.fetchEpisodeAnnotations(this.props.episode.episode_id);
+      TA.EpisodesStore.addAnnotationListener(this.newAnnotations);
+    },
+
+    render: function () {
+        var ans = this.state.annotations;
+        console.log(ans);
+      return (
+        <ol className="annotations">
+          {ans && ans.map(function (el) {
+            return(<span>{el.body}</span>);}
+          )}
+        </ol>
+      );
     }
-  })
+
+  });
 
 }(this));
+
+// <TA.AnnotationMarker key=""
+//                          episode={this.props.episode}
+//                          annotation={el} />);

@@ -16,6 +16,7 @@
       $.ajax('/api/episodes/' + episode_id +'/annotations', {
         method: "GET",
         success: function (data) {
+          console.log(data);
           TA.Actions.API.recAnnotations ({
             episode_id: episode_id,
             data: data
