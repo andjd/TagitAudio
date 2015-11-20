@@ -2,17 +2,14 @@
   'use strict';
   var TA = root.TA = root.TA || {};
 
-
-  TA.ProgressBar = React.createClass({
+  TA.AnnotationView = React.createClass ({
 
     render: function() {
       return (
-        <div className="progress-bar" />
+        <div />
       );
     }
 
   });
-
-
 
 }(this));

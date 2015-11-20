@@ -6,12 +6,17 @@
 
   TA.EpisodePlayer = React.createClass ({
     getInitialState: function () {
-      return { options: {} };
+      return { options: {}, playbackPos: {}, duration: {} };
     },
 
     updatePlaybackOptions: function () {
       this.setState({ options: TA.PlaybackOptionsStore.options() });
     },
+
+    audioStateUpdate: function (newState) {
+      this.setState(newState);
+    },
+
 
     localUpdatePlaybackOptions: function (options) {
 
@@ -36,15 +41,30 @@
       var currently_playing = (this.state.options.playing === this.props.episode.episode_id);
       return (
         <article className="player container">
-          <TA.EpisodeImage episode={this.props.episode} />
-          <TA.PlayButton   episode={this.props.episode}
-                           playing={currently_playing}
-                           options={this.state.options}
-                           callback={this.localUpdatePlaybackOptions}/>
-          <TA.EpisodeInfo  episode={this.props.episode} />
-          <TA.ProgressBar  episode={this.props.episode}
-                           options={this.state.options}
-                           playing={currently_playing} />
+          <div className="player-top">
+            <TA.EpisodeImage episode={this.props.episode} />
+            <TA.PlayButton   episode={this.props.episode}
+                             playing={currently_playing}
+                             options={this.state.options}
+                             callback={this.localUpdatePlaybackOptions}/>
+            <TA.EpisodeInfo  episode={this.props.episode} />
+          </div>
+          <div className="player-bottom">
+            <TA.ProgressBar   episode={this.props.episode} />
+            <TA.AnnotationsIndex episode={this.props.episode} />
+            {(currently_playing) ? (
+              <TA.AnnotationView episode={this.props.episode} />
+            ) : "" }
+          </div>
+
+
+          {(currently_playing) ? (
+            <TA.AudioElement episode={this.props.episode}
+                             options={this.state.options}
+                             playing={currently_playing}
+                             callback={this.audioStateUpdate}
+                             />
+            ) : "" }
         </article>
       );
     },

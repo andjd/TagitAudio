@@ -2,8 +2,10 @@ Rails.application.routes.draw do
   root to: 'static_pages#root'
   namespace :api, defaults: {format: :json} do
     resources :podcasts, only: :create
+    resources :annotions, only: :show
     resources :episodes, only: [:index, :show] do
-      resource :audio, only: :show
+      # resource :audio, only: :show
+      resources :annotations, only: [:create, :index]
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

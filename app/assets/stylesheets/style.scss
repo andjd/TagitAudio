@@ -24,7 +24,7 @@ $sans: 'Quattrocento Sans', sans-serif;
 $img-height: 150px;
 $player-padding: 10px;
 
-.player > img {
+.player-top > img {
   top: 0;
   left: 0;
   height: $img-height;
@@ -36,7 +36,7 @@ $player-padding: 10px;
 
 body
 
-.container::after, .control-el::after {
+.container::after {
   pointer-events: none;
   content: "";
   display: block;
@@ -71,9 +71,8 @@ body
 
 
 }
-.control-el {
+.control-el{
   position: relative;
-  overflow: hidden;
   display: block;
   margin: 10px;
   height: 25px;
@@ -87,27 +86,33 @@ body
 }
 
 
-.contorl-el > .slider {
-  display: hidden;
+
+.control-el > .slider {
+  display: none;
   position: absolute;
+  padding: 10px 0;
+  margin-left: 40px solid transparent;
+  top: 0;
+  left: 45px;
 }
 
 .control-el:hover > .slider {
-  display: block
+  display: block;
+  position: absolute;
 }
 
 .control-el:hover {
   background-color: rgba(0, 0, 0, 0.7)
 }
 
-.player > header {
+.player-top > header {
   height: $img-height;
   overflow: hidden;
 }
 
 h3, h4 {
   font-family: $serif;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 h3 {
@@ -116,7 +121,7 @@ h3 {
 
 h5 {
   font-family: $sans;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 h3, h4, h5 {
@@ -125,4 +130,12 @@ h3, h4, h5 {
 
 header {
   margin: 10px 10px;
+}
+
+.progress-bar {
+  height: 40px;
+  margin: 10px 10px 0 (10px + $img-height);
+  background-image: url(https://i.ytimg.com/vi/TQBCCToel5I/maxresdefault.jpg);
+  background-position: 0 -50%;
+  overflow: hidden;
 }

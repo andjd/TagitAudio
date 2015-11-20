@@ -4,4 +4,6 @@ class Episode < ActiveRecord::Base
   validates :podcast, presence: true
 
   belongs_to :podcast
+
+  has_many :annotations
 end
