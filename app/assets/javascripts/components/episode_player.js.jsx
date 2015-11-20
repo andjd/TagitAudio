@@ -46,9 +46,9 @@
           </div>
           <div className="player-bottom">
             <TA.ProgressBar   episode={this.props.episode} />
-              <TA.CommentsIndex episode={this.props.episode} />
+              <TA.AnnotaionsIndex episode={this.props.episode} />
               {(currently_playing) ? (
-                <TA.CommentView episode={this.props.episode} />
+                <TA.AnnotationView episode={this.props.episode} />
                 ) : null }
           </div>
 
