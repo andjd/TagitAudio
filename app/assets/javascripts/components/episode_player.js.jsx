@@ -36,15 +36,25 @@
       var currently_playing = (this.state.options.playing === this.props.episode.episode_id);
       return (
         <article className="player container">
-          <TA.EpisodeImage episode={this.props.episode} />
-          <TA.PlayButton   episode={this.props.episode}
-                           playing={currently_playing}
-                           options={this.state.options}
-                           callback={this.localUpdatePlaybackOptions}/>
-          <TA.EpisodeInfo  episode={this.props.episode} />
-          <TA.ProgressBar  episode={this.props.episode}
-                           options={this.state.options}
-                           playing={currently_playing} />
+          <div className="player-top">
+            <TA.EpisodeImage episode={this.props.episode} />
+            <TA.PlayButton   episode={this.props.episode}
+                             playing={currently_playing}
+                             options={this.state.options}
+                             callback={this.localUpdatePlaybackOptions}/>
+            <TA.EpisodeInfo  episode={this.props.episode} />
+          </div>
+          <div className="player-bottom">
+            <TA.ProgressBar   episode={this.props.episode} />
+            
+          </div>
+
+
+          {(currently_playing) ? (
+            <TA.AudioElement episode={this.props.episode}
+                             options={this.state.options}
+                             playing={currently_playing} />
+            ) : null }
         </article>
       );
     },

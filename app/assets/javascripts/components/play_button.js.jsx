@@ -33,7 +33,7 @@
           <button className="control-el play-button" onClick={this.handleClick}   onMouseEnter={this.handleEnter}>
             { (this.props.playing) ? "⌚️" : "➤" }
           </button>
-          {(this.props.playing && this.state.hover) ? (
+          {(this.props.playing && this.state.hover ) ? (
             <TA.Controls  episode={this.props.episode}
                         options={this.props.options}
                         callback={this.props.callback}
