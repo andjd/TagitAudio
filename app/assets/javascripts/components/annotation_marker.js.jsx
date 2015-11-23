@@ -12,6 +12,7 @@
       this.setState({position: this.markerPosition()});
     },
     
+    
     markerPosition: function () {
       return (this.props.annotation.time / (this.props.duration));
     },

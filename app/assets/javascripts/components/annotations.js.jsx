@@ -9,9 +9,26 @@
                tempAnnotation: null
       });
     },
+    
+    componentWillReceiveProps: function () {
+      this.findActiveAnnotation();
+    },
+    
+    findActiveAnnotation: function () {
+      var out ;
+      this.state.annotations.forEach(function (el) {
+        if (el.time < this.props.playbackPos) {out = el.annotation_id}
+      }.bind(this));
+      return out;
+    },
 
     newAnnotations: function () {
-      this.setState({annotations: TA.EpisodesStore.getAnnotations(this.props.episode.episode_id)});
+      var anns = TA.EpisodesStore.getAnnotations(this.props.episode.episode_id);
+      var annsSorted = (anns) ? anns.sort(function (x, y) {
+        return x.time - y.time;
+      }) : null;
+      
+      this.setState({annotations: annsSorted});
     },
 
 
@@ -50,7 +67,12 @@
                                           episode={this.props.episode}
                                           annotation={el} 
                                           duration={this.props.duration}
-                                          current={this.props.current} />
+                                          playbackPos={this.props.playbackPos}
+                                          setActive={this.setActiveAnnotation}
+                                          setTemp={this.setTempAnnotation}
+                                          voidTemp={this.voidTempAnnotation} 
+                                          current={this.currentAnnotation}
+                                          />
                   );
             }.bind(this))}
           </ol>
@@ -59,7 +81,10 @@
             return( <TA.AnnotationView  key={el.annotation_id}
                                         episode={this.props.episode}
                                         annotation={el} 
-                                        current={this.props.current} />
+                                        setTemp={this.setTempAnnotation}
+                                        voidTemp={this.voidTempAnnotation} 
+                                        current={this.currentAnnotation} 
+                                        />
                   );
             }.bind(this))}
         </ol>

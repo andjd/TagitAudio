@@ -10,7 +10,6 @@
     },
 
     updatePlaybackOptions: function () {
-      debugger
       this.setState({ options: TA.PlaybackOptionsStore.options() });
     },
 
@@ -59,6 +58,7 @@
             <TA.ProgressBar  episode={this.props.episode} />
             <TA.Annotations  episode={this.props.episode}
                              duration={this.state.duration}
+                             playbackPos={this.state.playbackPos}
                              active={active} />
           </div>
 
