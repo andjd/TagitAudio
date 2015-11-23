@@ -1,4 +1,3 @@
-
 (function(root) {
   'use strict';
   var TA = root.TA = root.TA || {};
@@ -6,22 +5,31 @@
 
 
   TA.AudioElement = React.createClass({
+    
 
     componentDidMount: function () {
-      this.props.activateCallback();
       this.player = React.findDOMNode(this.refs.player);
+      this.player.addEventListener('timeupdate', this.updatePlaybackPos);
+      this.player.addEventListener('loadedmetadata', this.updateDuration);
+
       this.setPlayerSettings();
-      this.props.callback({duration: this.audioDuration()});
     },
 
     componentWillUnmount: function () {
-      clearInterval(this.interval);
+      this.player.removeEventListener('timeupdate', this.updatePlaybackPos);
+      this.player.removeEventListener('loadedmetadata', this.updateDuration);
+    },
+
+    updateDuration: function () {
+
+      this.props.callback({duration: this.audioDuration()});
     },
 
     updatePlaybackPos: function () {
+
       this.props.callback( {playbackPos: this.playbackPos()} );
     },
-      
+
     componentDidUpdate: function() {
       this.setPlayerSettings();
     },
@@ -52,9 +60,8 @@
 
 
     render: function () {
-
       return (
-        <audio ref="player" autoPlay="true">
+        <audio  ref="player" >
           <source src={this.props.episode.episode_url}
                   type={this.props.episode.mime_type} />
         </audio>
