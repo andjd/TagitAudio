@@ -50,9 +50,9 @@
         this.player.pause();
       }
 
-      if (this.props.seek !== null) {
-          this.player.fastSeek(this.props.seekPosition);
-          this.props.seekCallback();
+      if (this.props.seekPosition) {
+        this.player.currentTime = this.props.seekPosition;
+        this.props.seekCallback();
       }
 
       this.player.playbackRate = this.props.options.playback_speed;
@@ -76,4 +76,4 @@
     }
   });
 
-}(this))
+}(this));

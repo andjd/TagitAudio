@@ -26,11 +26,11 @@
     },
 
     annotationClick: function (time) {
-      this.setState({seek: time})
+      this.setState({seek: time});
     },
 
     clearSeek: function () {
-      this.setState({seek: null})
+      this.setState({seek: null});
     },
 
 

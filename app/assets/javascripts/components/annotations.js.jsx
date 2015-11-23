@@ -4,23 +4,19 @@
 
   TA.Annotations = React.createClass ({
     getInitialState: function () {
-      return ({annotations: TA.EpisodesStore.getAnnotations(this.props.episode.episode_id),
-               activeAnnotation: null,
-               tempAnnotation: null
-      });
+      return ({activeAnnotation: null, tempAnnotation: null});
     },
 
     componentWillReceiveProps: function () {
-      this.setState({activeAnnotation: this.findActiveAnnotation()});
+      this.setActiveAnnotation()
     },
 
-    findActiveAnnotation: function () {
-      //this method does not work!
+    setActiveAnnotation: function () {
       var out ;
-      this.state.annotations.forEach(function (el) {
+      this.props.episode.annotations.forEach(function (el) {
         if ((el.time / this.props.duration) < this.props.playbackPos) {out = el.annotation_id;}
       }.bind(this));
-      return out;
+      this.setState({activeAnnotation: out});
     },
 
     newAnnotations: function () {
@@ -29,19 +25,9 @@
         return x.time - y.time;
       }) : [];
 
-
       this.setState({annotations: annsSorted});
     },
 
-
-    componentDidMount: function() {
-      TA.AjaxUtil.API.fetchEpisodeAnnotations(this.props.episode.episode_id);
-      TA.EpisodesStore.addAnnotationListener(this.newAnnotations);
-    },
-
-    setActiveAnnotation: function (val) {
-        this.setState({activeAnnotation: val});
-    },
 
     setTempAnnotation: function (val) {
         this.setState({tempAnnotation: val});
@@ -58,7 +44,7 @@
     },
 
     render: function () {
-      var ans = this.state.annotations;
+      var ans = this.props.episode.annotations;
       return (
         <div className="annotations">
 
@@ -69,7 +55,6 @@
                                           annotation={el}
                                           duration={this.props.duration}
                                           playbackPos={this.props.playbackPos}
-                                          setActive={this.setActiveAnnotation}
                                           setTemp={this.setTempAnnotation}
                                           voidTemp={this.voidTempAnnotation}
                                           current={this.currentAnnotation()}

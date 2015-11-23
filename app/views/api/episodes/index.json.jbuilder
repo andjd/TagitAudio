@@ -10,4 +10,13 @@ json.array! @eps do |episode|
     json.title episode.podcast.title
     json.image_url episode.podcast.image_url
   end
+  json.annotations do
+    json.array! episode.annotations do |ann|
+      json.annotation_id ann.id
+      json.body ann.body
+      json.time ann.time
+      json.user_id ann.user_id
+      # json.user_avatar_url ann.user.avatar_url
+    end
+  end
 end

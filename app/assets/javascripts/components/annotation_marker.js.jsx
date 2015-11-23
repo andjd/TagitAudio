@@ -26,7 +26,6 @@
     },
 
     seekToMe: function () {
-      debugger
       this.props.clickCallback(this.props.annotation.time);
     },
 

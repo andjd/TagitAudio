@@ -1,11 +1,11 @@
 class Api::EpisodesController < ApplicationController
   def index
-    @eps = Episode.all
+    @eps = Episode.includes(:podcast, :annotations).all
     render :index
   end
 
   def show
-    @eps = [Episode.find(params[:id])]
+    @eps = [Episode.includes(:podcast, :annotations).find(params[:id])]
     render :index
   end
 end
