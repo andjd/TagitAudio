@@ -6,7 +6,11 @@
 
   TA.EpisodePlayer = React.createClass ({
     getInitialState: function () {
-      return { options: {}, playbackPos: 0, duration: NaN , activated: false};
+      return { options: {},
+               playbackPos: 0,
+               duration: NaN ,
+               activated: false,
+               seek: null};
     },
 
     updatePlaybackOptions: function () {
@@ -21,6 +25,13 @@
       this.setState({activated: true});
     },
 
+    annotationClick: function (time) {
+      this.setState({seek: time})
+    },
+
+    clearSeek: function () {
+      this.setState({seek: null})
+    },
 
 
     localUpdatePlaybackOptions: function (options) {
@@ -61,7 +72,8 @@
             <TA.Annotations  episode={this.props.episode}
                              duration={this.state.duration}
                              playbackPos={this.state.playbackPos}
-                             active={active} />
+                             active={active}
+                             clickCallback={this.annotationClick}/>
           </div>
 
 
@@ -71,6 +83,8 @@
                              playing={currently_playing}
                              callback={this.audioStateUpdate}
                              activateCallback={this.activate}
+                             seekPosition={this.state.seek}
+                             seekCallback={this.clearSeek}
                              />
             ) : "" }
         </article>

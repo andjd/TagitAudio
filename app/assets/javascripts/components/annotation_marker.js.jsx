@@ -25,6 +25,11 @@
       this.props.voidTemp();
     },
 
+    seekToMe: function () {
+      debugger
+      this.props.clickCallback(this.props.annotation.time);
+    },
+
 
 
     render: function () {
@@ -32,12 +37,12 @@
       var style = {
                     left: ((this.state.position * 100).toString() + "%"),
                   };
-
       return <div style={style}
                   data-position={this.state.position}
                   className={(current) ? "annotation-marker active" : "annotation-marker"}
                   onMouseEnter={this.setTemp}
                   onMouseLeave={this.voidTemp}
+                  onClick={this.seekToMe}
                   >
                <img src="https://mysticmeeple.files.wordpress.com/2015/05/meeple.png?w=300" alt="marker" />
              </div>;

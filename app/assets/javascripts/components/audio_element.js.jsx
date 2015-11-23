@@ -50,6 +50,11 @@
         this.player.pause();
       }
 
+      if (this.props.seek !== null) {
+          this.player.fastSeek(this.props.seekPosition);
+          this.props.seekCallback();
+      }
+
       this.player.playbackRate = this.props.options.playback_speed;
       this.player.volume = this.props.options.volume;
       this.player.muted = this.props.options.muted;

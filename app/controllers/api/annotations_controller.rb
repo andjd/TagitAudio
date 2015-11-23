@@ -13,7 +13,11 @@ class Api::AnnotationsController < ApplicationController
   def show
     @annotation = Annotation.find(params[:id])
 
-    render :show
+    if @annotation
+      render :show
+    else
+      render json: {}, status: :not_found
+    end
   end
 
 
@@ -21,6 +25,10 @@ class Api::AnnotationsController < ApplicationController
     ep = Episode.find(params[:episode_id])
     @annotations = ep.annotations
 
-    render :index
+    if @annotation
+      render :index
+    else
+      render json: {}, status: :not_found
+    end
   end
 end
