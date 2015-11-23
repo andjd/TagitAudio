@@ -5,7 +5,7 @@
 
 
   TA.AudioElement = React.createClass({
-    
+
 
     componentDidMount: function () {
       this.player = React.findDOMNode(this.refs.player);
@@ -61,7 +61,8 @@
 
     render: function () {
       return (
-        <audio  ref="player" controls="controls" >
+        <audio  ref="player" >
+
           <source src={this.props.episode.episode_url}
                   type={this.props.episode.mime_type} />
         </audio>

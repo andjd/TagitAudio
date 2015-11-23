@@ -16,7 +16,7 @@
     audioStateUpdate: function (newState) {
       this.setState(newState);
     },
-    
+
     activate: function () {
       this.setState({activated: true});
     },
@@ -55,6 +55,7 @@
             <TA.EpisodeInfo  episode={this.props.episode} />
           </div>
           <div className="player-bottom">
+
             <TA.ProgressBar  episode={this.props.episode} />
             <TA.Annotations  episode={this.props.episode}
                              duration={this.state.duration}
