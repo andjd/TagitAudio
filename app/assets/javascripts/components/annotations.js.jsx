@@ -70,7 +70,7 @@
                                         annotation={el}
                                         setTemp={this.setTempAnnotation}
                                         voidTemp={this.voidTempAnnotation}
-                                        current={this.currentAnnotation}
+                                        current={this.currentAnnotation()}
                                         clickCallback={this.props.clickCallback}
                                         />
                   );
