@@ -8,7 +8,7 @@
     },
 
     componentWillReceiveProps: function () {
-      this.setActiveAnnotation()
+      this.setActiveAnnotation();
     },
 
     setActiveAnnotation: function () {

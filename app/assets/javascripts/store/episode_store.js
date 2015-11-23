@@ -8,15 +8,6 @@
     episodes = eps;
   };
 
-  var _addAnnotationsToEpisode = function (epId, annotations) {
-    var ep = episodes.find(function (e) {return (e.episode_id === epId);});
-    var a = ep.annotations = ep.annotations || [];
-    var newAnnotations = annotations.filter(function (ann) {
-      return(a.indexOf(ann) === -1);
-    });
-
-    a.push(...newAnnotations);
-  };
 
   var EPISODES_UPDATE = "new episodes";
   var ANNOTATIONS_UPDATE = "new annotations";
