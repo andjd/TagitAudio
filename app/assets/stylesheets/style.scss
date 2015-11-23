@@ -151,3 +151,7 @@ header {
   position: relative;
   height: 25px;
 }
+
+.annotation-marker.active {
+  border: 5px solid red;
+}

@@ -18,13 +18,16 @@
     },
 
     render: function () {
+      debugger
+      var current = (this.props.current === this.props.annotation.annotation_id);
+      console.log(current)
       var style = {left: ((this.state.position * 100).toString() + "%"),
                   // update to reflect user's avatar
                   backgroundImage: "url(https://mysticmeeple.files.wordpress.com/2015/05/meeple.png?w=300" };
 
       return <div style={style} 
                   data-position={this.state.position}
-                  className="annotation-marker"
+                  className={(current) ? "annotation-marker active" : "annotation-marker"}
                   />;
     }
   });

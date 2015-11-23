@@ -11,13 +11,14 @@
     },
     
     componentWillReceiveProps: function () {
-      this.findActiveAnnotation();
+      this.setState({activeAnnotation: this.findActiveAnnotation()});
     },
     
     findActiveAnnotation: function () {
+      //this method does not work!
       var out ;
       this.state.annotations.forEach(function (el) {
-        if (el.time < this.props.playbackPos) {out = el.annotation_id}
+        if ((el.time / this.props.duration) < this.props.playbackPos) {out = el.annotation_id;}
       }.bind(this));
       return out;
     },
@@ -26,7 +27,8 @@
       var anns = TA.EpisodesStore.getAnnotations(this.props.episode.episode_id);
       var annsSorted = (anns) ? anns.sort(function (x, y) {
         return x.time - y.time;
-      }) : null;
+      }) : [];
+      
       
       this.setState({annotations: annsSorted});
     },
@@ -71,7 +73,7 @@
                                           setActive={this.setActiveAnnotation}
                                           setTemp={this.setTempAnnotation}
                                           voidTemp={this.voidTempAnnotation} 
-                                          current={this.currentAnnotation}
+                                          current={this.currentAnnotation()}
                                           />
                   );
             }.bind(this))}

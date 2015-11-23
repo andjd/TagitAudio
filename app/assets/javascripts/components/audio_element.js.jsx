@@ -61,7 +61,7 @@
 
     render: function () {
       return (
-        <audio  ref="player" >
+        <audio  ref="player" controls="controls" >
           <source src={this.props.episode.episode_url}
                   type={this.props.episode.mime_type} />
         </audio>
