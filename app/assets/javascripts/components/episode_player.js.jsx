@@ -6,15 +6,20 @@
 
   TA.EpisodePlayer = React.createClass ({
     getInitialState: function () {
-      return { options: {}, playbackPos: {}, duration: {} };
+      return { options: {}, playbackPos: 0, duration: NaN , activated: false};
     },
 
     updatePlaybackOptions: function () {
+      debugger
       this.setState({ options: TA.PlaybackOptionsStore.options() });
     },
 
     audioStateUpdate: function (newState) {
       this.setState(newState);
+    },
+    
+    activate: function () {
+      this.setState({activated: true});
     },
 
 
@@ -39,6 +44,7 @@
 
     render: function () {
       var currently_playing = (this.state.options.playing === this.props.episode.episode_id);
+      var active = (currently_playing || this.state.activated)
       return (
         <article className="player container">
           <div className="player-top">
@@ -50,19 +56,19 @@
             <TA.EpisodeInfo  episode={this.props.episode} />
           </div>
           <div className="player-bottom">
-            <TA.ProgressBar   episode={this.props.episode} />
-            <TA.AnnotationsIndex episode={this.props.episode} />
-            {(currently_playing) ? (
-              <TA.AnnotationView episode={this.props.episode} />
-            ) : "" }
+            <TA.ProgressBar  episode={this.props.episode} />
+            <TA.Annotations  episode={this.props.episode}
+                             duration={this.state.duration}
+                             active={active} />
           </div>
 
 
-          {(currently_playing) ? (
+          {(active) ? (
             <TA.AudioElement episode={this.props.episode}
                              options={this.state.options}
                              playing={currently_playing}
                              callback={this.audioStateUpdate}
+                             activateCallback={this.activate}
                              />
             ) : "" }
         </article>

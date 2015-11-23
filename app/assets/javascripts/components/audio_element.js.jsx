@@ -8,10 +8,10 @@
   TA.AudioElement = React.createClass({
 
     componentDidMount: function () {
+      this.props.activateCallback();
       this.player = React.findDOMNode(this.refs.player);
       this.setPlayerSettings();
-      this.props.callback({duration: this.audioDuration});
-      this.interval = setTimeout(this.updatePlaybackPos);
+      this.props.callback({duration: this.audioDuration()});
     },
 
     componentWillUnmount: function () {
@@ -19,7 +19,7 @@
     },
 
     updatePlaybackPos: function () {
-      this.props.callback( {playbackPos: this.playbackPos} );
+      this.props.callback( {playbackPos: this.playbackPos()} );
     },
       
     componentDidUpdate: function() {
@@ -31,7 +31,7 @@
     },
 
     playbackPos: function () {
-      return this.player.currentTime / this.audioDuration;
+      return this.player.currentTime / this.audioDuration();
     },
 
     setPlayerSettings: function () {
