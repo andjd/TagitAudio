@@ -6,7 +6,7 @@
 
   TA.EpisodePlayer = React.createClass ({
     getInitialState: function () {
-      return { options: {}, playbackPos: 0, duration: NaN , activated: false};
+      return { options: {}, playbackPos: 0, duration: NaN , activated: []};
     },
 
     updatePlaybackOptions: function () {

@@ -8,6 +8,7 @@
 
 
     componentDidMount: function () {
+      this.props.activateCallback();
       this.player = React.findDOMNode(this.refs.player);
       this.player.addEventListener('timeupdate', this.updatePlaybackPos);
       this.player.addEventListener('loadedmetadata', this.updateDuration);
