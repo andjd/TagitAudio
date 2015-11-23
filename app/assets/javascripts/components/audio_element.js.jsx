@@ -1,4 +1,3 @@
-
 (function(root) {
   'use strict';
   var TA = root.TA = root.TA || {};
@@ -6,9 +5,10 @@
 
 
   TA.AudioElement = React.createClass({
-    
+
 
     componentDidMount: function () {
+      this.props.activateCallback();
       this.player = React.findDOMNode(this.refs.player);
       this.player.addEventListener('timeupdate', this.updatePlaybackPos);
       this.player.addEventListener('loadedmetadata', this.updateDuration);
@@ -63,6 +63,7 @@
     render: function () {
       return (
         <audio  ref="player" >
+
           <source src={this.props.episode.episode_url}
                   type={this.props.episode.mime_type} />
         </audio>
@@ -70,4 +71,4 @@
     }
   });
 
-}(this));
+}(this))
