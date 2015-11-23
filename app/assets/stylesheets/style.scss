@@ -146,8 +146,9 @@ header {
   border-radius: 45% 0 45% 45%;
   transform: rotate(-.125turn);
   position: absolute;
-  border: 1px solid black;
+  border: 2px solid black;
   overflow: hidden;
+  z-index: 100;
 }
 
 .annotation-marker > img {
@@ -167,4 +168,5 @@ header {
 
 .annotation-marker.active {
   border: 5px solid red;
+  z-index: 150;
 }

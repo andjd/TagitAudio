@@ -17,6 +17,16 @@
       return (this.props.annotation.time / (this.props.duration));
     },
 
+    setTemp: function () {
+      this.props.setTemp(this.props.annotation.annotation_id);
+    },
+
+    voidTemp: function () {
+      this.props.voidTemp();
+    },
+
+
+
     render: function () {
       var current = (this.props.current === this.props.annotation.annotation_id);
       var style = {
@@ -26,6 +36,8 @@
       return <div style={style}
                   data-position={this.state.position}
                   className={(current) ? "annotation-marker active" : "annotation-marker"}
+                  onMouseEnter={this.setTemp}
+                  onMouseLeave={this.voidTemp}
                   >
                <img src="https://mysticmeeple.files.wordpress.com/2015/05/meeple.png?w=300" alt="marker" />
              </div>;

@@ -6,7 +6,7 @@
 
   TA.EpisodePlayer = React.createClass ({
     getInitialState: function () {
-      return { options: {}, playbackPos: 0, duration: NaN , activated: []};
+      return { options: {}, playbackPos: 0, duration: NaN , activated: false};
     },
 
     updatePlaybackOptions: function () {
@@ -20,6 +20,7 @@
     activate: function () {
       this.setState({activated: true});
     },
+
 
 
     localUpdatePlaybackOptions: function (options) {
@@ -43,7 +44,7 @@
 
     render: function () {
       var currently_playing = (this.state.options.playing === this.props.episode.episode_id);
-      var active = (currently_playing || this.state.activated)
+      var active = (currently_playing || this.state.activated);
       return (
         <article className="player container">
           <div className="player-top">
