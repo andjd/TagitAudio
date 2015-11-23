@@ -56,6 +56,10 @@
     render: function () {
       var currently_playing = (this.state.options.playing === this.props.episode.episode_id);
       var active = (currently_playing || this.state.activated);
+      var mostRecentActive = (active &&
+                (!this.state.options.playing ||
+                   currently_playing ||
+                   this.state.options.playing === -1));
       return (
         <article className="player container">
           <div className="player-top">
@@ -72,7 +76,7 @@
             <TA.Annotations  episode={this.props.episode}
                              duration={this.state.duration}
                              playbackPos={this.state.playbackPos}
-                             active={active}
+                             active={mostRecentActive}
                              clickCallback={this.annotationClick}/>
           </div>
 

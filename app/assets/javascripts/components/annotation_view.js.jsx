@@ -16,7 +16,7 @@
     },
 
     render: function() {
-      var current = (this.props.current === this.props.annotation.annotation_id)
+      var current = (this.props.current === this.props.annotation.annotation_id);
       return (
         <p  className={(current) ?
               "annotation-body active" : "annotation-body"}

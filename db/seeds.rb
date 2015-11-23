@@ -9,8 +9,11 @@
 Podcast.digest_rss_feed("http://www.macobserver.com/rss/dailyobservations_mp3.xml")
 Podcast.digest_rss_feed("http://ludology.libsyn.com/rss")
 
-first = Episode.first
-10.times do |i|
-    secs = i * 10 + 10
-    first.annotations.create!(user_id: 1, time: secs, body: "this is test annotation # #{i}")
+Episode.all.each do |ep|
+  j = ep.id;
+
+  12.times do |i|
+      secs = (i * 10 + 10) * j
+      ep.annotations.create!(user_id: (rand() * 8).to_i , time: secs, body: "this is test annotation # #{i}")
+    end
 end

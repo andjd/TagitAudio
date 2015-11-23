@@ -64,8 +64,9 @@
             }.bind(this))}
           </ol>
           <ol className="annotation-view">
-            {ans && ans.map(function (el) {
-            return( <TA.AnnotationView  key={el.annotation_id}
+            {(this.props.active) ?
+              (ans && ans.map(function (el) {
+                return( <TA.AnnotationView  key={el.annotation_id}
                                         episode={this.props.episode}
                                         annotation={el}
                                         setTemp={this.setTempAnnotation}
@@ -74,7 +75,8 @@
                                         clickCallback={this.props.clickCallback}
                                         />
                   );
-            }.bind(this))}
+            }.bind(this))
+          ) : "" }
         </ol>
       </div>
       );
