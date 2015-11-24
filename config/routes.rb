@@ -4,6 +4,11 @@ Rails.application.routes.draw do
     resources :podcasts, only: :create
     resources :annotions, only: :show
     resources :episodes, only: [:index, :show] do
+      collection do
+        get 'newest'
+        get "following"
+        get "trending"
+      end
       # resource :audio, only: :show
       resources :annotations, only: [:create, :index]
     end

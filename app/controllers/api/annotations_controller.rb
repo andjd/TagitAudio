@@ -8,6 +8,7 @@ class Api::AnnotationsController < ApplicationController
           @eps = [ep]
           render "api/episodes/index"
       else
+        # does not function as inteded: obliterates existing podcasts.
         render json: {}, status: :unprocessable_entity
       end
     end

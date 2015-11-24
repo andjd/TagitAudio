@@ -1,5 +1,5 @@
 // reset
-html, body, article, div, span, button, input,
+html, body, article, div, span, button, input, header,
 h1, h2, h3, h4, h5, h6, header,  p, strong, em, a , ol {
   margin: 0;
   border: 0;
@@ -13,6 +13,10 @@ h1, h2, h3, h4, h5, h6, header,  p, strong, em, a , ol {
   background: transparent;
 }
 
+ol, ul {
+  list-style: none;
+}
+
 
 .group::after {
   content: "";
@@ -22,6 +26,9 @@ h1, h2, h3, h4, h5, h6, header,  p, strong, em, a , ol {
 
 $serif: 'Quattrocento', serif;
 $sans: 'Quattrocento Sans', sans-serif;
+$logo: 'Dosis', sans-serif;
+$accent: 'Simonetta', serif;
+$primary-color: #66b2ff;
 $img-height: 150px;
 $player-padding: 10px;
 
@@ -33,10 +40,56 @@ $player-padding: 10px;
   float: left;
   margin-left: -$player-padding;
   margin-top: -$player-padding;
+
 }
 
 
-body
+.top-bar {
+  margin: 0;
+  padding: 15px 25px;
+  background-color: $primary-color;
+}
+
+.logo {
+  font-family: $logo;
+
+}
+
+.logo > span:first-child {
+  font-weight: 800;
+  font-size: 30px;
+}
+
+.logo > span:last-child {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+nav {
+  display: block;
+  font-family: $serif;
+  font-size: 24px;
+}
+.nav-el {
+  float: left;
+  padding: 25px 0;
+}
+
+.nav-el > a:hover {
+  color: $primary-color;
+}
+nav .nav-el:not(:last-child):after {
+  content: "//";
+  color: $primary-color;
+  margin: 20px
+
+}
+
+.nav-el.active > a {
+  font-family: $accent;
+  font-weight: 800;
+}
+
 
 button {
   height: 30px;

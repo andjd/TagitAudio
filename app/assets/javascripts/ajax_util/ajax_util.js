@@ -4,15 +4,15 @@
   var AjaxUtil = TA.AjaxUtil = TA.AjaxUtil || {};
 
   TA.AjaxUtil.API = {
-    fetchEpisodes: function() {
-      $.ajax("/api/episodes", {
+    fetchEpisodes: function(mode) {
+      $.ajax(("/api/episodes/" + mode), {
         method: "GET",
         success: function (data) {
           TA.Actions.API.recEpisodes(data);
         }
       });
     },
-    
+
     createAnnotation: function(params) {
       $.ajax(("/api/episodes/" + params.episode_id + "/annotations" ), {
         method: "POST",
@@ -25,7 +25,7 @@
         }
       });
     }
-  
+
   };
 
 

@@ -6,14 +6,19 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Podcast.digest_rss_feed("http://www.macobserver.com/rss/dailyobservations_mp3.xml")
+Podcast.digest_rss_feed("http://flipthetable.libsyn.com/rss")
 Podcast.digest_rss_feed("http://ludology.libsyn.com/rss")
+Podcast.digest_rss_feed("http://breakingintoboardgames.libsyn.com/rss")
+Podcast.digest_rss_feed("http://www.shutupandsitdown.com/podcast/feed.xml")
+Podcast.digest_rss_feed("http://boardgamesinsider.com/feed/podcast/")
 
 Episode.all.each do |ep|
   j = ep.id;
 
-  10.times do |i|
-      secs = rand() * ep.duration
+  num_ann = (rand * 12).to_i
+
+  num_ann.times do |i|
+      secs = rand * ep.duration
       ep.annotations.create!(user_id: (rand() * 8).to_i , time: secs, body: "this is test annotation # #{i}")
     end
 end
