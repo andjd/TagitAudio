@@ -2,7 +2,7 @@
 
 [Heroku link][heroku]
 
-[heroku]: http://www.herokuapp.com
+[heroku]: tagit-audio.herokuapp.com
 
 ## Minimum Viable Product
 
@@ -16,11 +16,11 @@ Features:
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 
 - [ ] Users can Create an account, sign in, and sign out
-- [ ] It has a episode view that displays the podcast info
-- [ ] Users can play, pause, and seek within podcasts from the episode view
+- [X] It has a episode view that displays the podcast info
+- [X] Users can play, pause, and seek within podcasts from the episode view
 - [ ] The episode view shows stats such as number of plays and number of likes.
 - [ ] Users can follow podcasts and like specific episodes of podcasts
-- [ ] Users can add annotations to specific timepoints of episodes
+- [X] Users can add annotations to specific timepoints of episodes
 - [ ] Users can add tags to episodes by typing "#" in an annotation
 - [ ] Users can search for podcasts by name, description, and tag
 - [ ] Users can click on a tag in a comment to perform a search for that tag
@@ -56,6 +56,9 @@ bar/image.  Once a single instance of the episode view is functioning, the next
 goal is to render a list of episode views to the page and make sure that only
 one audio element is active at any given time.
 
+* Status — Complete
+* Notes — wavesurfer library did not work with podcasts.  Will have to write own function to get waveform bars.
+
 [Details][phase-two]
 
 ### Phase 3:
@@ -65,6 +68,9 @@ Add ability for users to add and view annotations directly in the episode view.
 add flux architecture to handle CRUD of comments, and flesh out server side code
 to persist and serve annotations to/from the DB.  Tags will be generated on the
 fly users typing "#". A user stub will be used in this phase.
+
+* Status — Partially Complete — CRUD is rudimentary, TAGS not yet implemented.
+* 
 
 [Details][phase-three]
 
