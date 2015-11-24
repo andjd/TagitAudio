@@ -4,8 +4,12 @@
 
   TA.Annotations = React.createClass ({
     getInitialState: function () {
-      return ({activeAnnotation: null, tempAnnotation: null, form: false});
+      return ({activeAnnotation: null, tempAnnotation: null, form: false, scrollHeight: 0});
     },
+
+    // componentDidMount: function () {
+    //   this.annotationBox = React.findDOMNode(this.refs.annobox);
+    // },
 
     componentWillReceiveProps: function () {
       this.setActiveAnnotation();
@@ -33,10 +37,17 @@
             this.state.activeAnnotation :
             this.state.tempAnnotation ;
     },
-    
+
     showForm: function () {
       this.setState({form: true});
     },
+
+    // componentDidUpdate: function () {
+    //
+    //   debugger
+    //   this.annotationBox.scrollTo(40)
+    //
+    // },
 
     render: function () {
       var ans = this.props.episode.annotations;
@@ -58,7 +69,8 @@
                   );
             }.bind(this))}
           </ol>
-          <ol className="annotation-view">
+          <ol className={(this.props.active) ? "annotation-box active" : "annotation-box"}
+              ref="annobox">
             {(this.props.active) ?
               (ans && ans.map(function (el) {
                 return( <TA.AnnotationView  key={el.annotation_id}
@@ -69,7 +81,7 @@
                                         current={this.currentAnnotation()}
                                         clickCallback={this.props.clickCallback}
                                         />
-                        
+
                   );
             }.bind(this))
           ) : "" }
@@ -80,7 +92,7 @@
         {(this.state.form) ?
           <TA.NewAnnotationForm episode={this.props.episode}
                                 playbackPos={this.props.playbackPos} /> : "" }
-                                
+
       </div>
       );
     }

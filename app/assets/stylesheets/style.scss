@@ -242,7 +242,18 @@ header {
   height: 25px;
 }
 
+.annotation-box {
 
+  height: 0;
+  border: 0px solid orange;
+  display: block;
+  overflow-y: scroll;
+
+}
+.annotation-box.active {
+  height: 60px;
+  border: 3px solid orange;
+}
 .annotation-body {
   font-family: $sans;
   font-size: 14px;

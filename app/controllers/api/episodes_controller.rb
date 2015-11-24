@@ -5,7 +5,13 @@ class Api::EpisodesController < ApplicationController
   end
 
   def trending
-    @eps = Episode.includes(:podcast, :annotations).order(:annotations_count).reverse_order.first(7)
+    @eps = Episode.includes(:podcast, :annotations).all #find_by_sql(<<-SQL)
+        #   SELECT *
+        #   FROM episodes
+        #
+        #   SELECT
+        #
+        # SQL
     render :index
   end
 
@@ -15,7 +21,10 @@ class Api::EpisodesController < ApplicationController
   end
 
   def following
-    @eps = Episode.includes(:podcast, :annotations).all
+    @eps = Episode.includes(:podcast, :annotations).all 
+    # insert stuff here
+    # .order(:publication_date).reverse_order.first(7)
+    # all episodes of follwed podcasts, order by publication date
     render :index
   end
 

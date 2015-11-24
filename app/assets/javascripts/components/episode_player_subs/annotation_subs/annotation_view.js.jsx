@@ -15,11 +15,17 @@
       this.props.clickCallback(this.props.annotation.time);
     },
 
+    // componentWillReceiveProps: function () {
+    //   this.active = React.findDOMNode(this.refs.active);
+    //
+    // },
+
     render: function() {
       var current = (this.props.current === this.props.annotation.annotation_id);
       return (
         <p  className={(current) ?
               "annotation-body active" : "annotation-body"}
+            ref={(current) ? "active" : "_" }
             onMouseEnter={this.setTemp}
             onMouseLeave={this.voidTemp}
             onClick={this.seekToMe} >
