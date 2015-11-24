@@ -12,8 +12,8 @@ Podcast.digest_rss_feed("http://ludology.libsyn.com/rss")
 Episode.all.each do |ep|
   j = ep.id;
 
-  12.times do |i|
-      secs = (i * 10 + 10) * j
+  10.times do |i|
+      secs = rand() * ep.duration
       ep.annotations.create!(user_id: (rand() * 8).to_i , time: secs, body: "this is test annotation # #{i}")
     end
 end

@@ -6,4 +6,8 @@ class Episode < ActiveRecord::Base
   belongs_to :podcast
 
   has_many :annotations
+  
+  def annotations_in_order
+    self.annotations.order(:time)
+  end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151120161035) do
+ActiveRecord::Schema.define(version: 20151124021619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20151120161035) do
     t.integer  "podcast_id",       null: false
     t.string   "title",            null: false
     t.string   "episode_url",      null: false
-    t.string   "duration"
+    t.integer  "duration"
     t.string   "description",      null: false
     t.datetime "publication_date", null: false
     t.string   "feedjira_id",      null: false

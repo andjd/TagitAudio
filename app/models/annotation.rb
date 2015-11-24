@@ -4,5 +4,12 @@ class Annotation < ActiveRecord::Base
 
   belongs_to :episode
   has_one :podcast, through: :episode, source: :podcast
+  
+  include Comparable
+  
+  def <=> (other) 
+    self.time <=> other.time
+  end
+    
 
 end

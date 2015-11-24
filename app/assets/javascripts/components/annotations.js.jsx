@@ -4,7 +4,7 @@
 
   TA.Annotations = React.createClass ({
     getInitialState: function () {
-      return ({activeAnnotation: null, tempAnnotation: null});
+      return ({activeAnnotation: null, tempAnnotation: null, form: false});
     },
 
     componentWillReceiveProps: function () {
@@ -17,15 +17,6 @@
         if ((el.time / this.props.duration) < this.props.playbackPos) {out = el.annotation_id;}
       }.bind(this));
       this.setState({activeAnnotation: out});
-    },
-
-    newAnnotations: function () {
-      var anns = TA.EpisodesStore.getAnnotations(this.props.episode.episode_id);
-      var annsSorted = (anns) ? anns.sort(function (x, y) {
-        return x.time - y.time;
-      }) : [];
-
-      this.setState({annotations: annsSorted});
     },
 
 
@@ -41,6 +32,10 @@
         return (this.state.tempAnnotation === null) ?
             this.state.activeAnnotation :
             this.state.tempAnnotation ;
+    },
+    
+    showForm: function () {
+      this.setState({form: true});
     },
 
     render: function () {
@@ -74,10 +69,18 @@
                                         current={this.currentAnnotation()}
                                         clickCallback={this.props.clickCallback}
                                         />
+                        
                   );
             }.bind(this))
           ) : "" }
         </ol>
+        <button className="button"
+                onClick={this.showForm}
+                >➕</button>
+        {(this.state.form) ?
+          <TA.NewAnnotationForm episode={this.props.episode}
+                                playbackPos={this.props.playbackPos} /> : "" }
+                                
       </div>
       );
     }

@@ -6,9 +6,10 @@
 
   TA.EpisodePlayer = React.createClass ({
     getInitialState: function () {
+
       return { options: {},
                playbackPos: 0,
-               duration: NaN ,
+               duration: this.props.episode.duration,
                activated: false,
                seek: null};
     },
@@ -50,7 +51,7 @@
 
     componentWillUnmount: function () {
       this.setState({options: {playing: null}});
-      TA.PlaybackOptionsStore.reListener(this.updatePlaybackOptions);
+      TA.PlaybackOptionsStore.rmListener(this.updatePlaybackOptions);
     },
 
     render: function () {
