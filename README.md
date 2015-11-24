@@ -2,7 +2,7 @@
 
 [Heroku link][heroku]
 
-[heroku]: tagit-audio.herokuapp.com
+[heroku]: http://tagit-audio.herokuapp.com
 
 ## Minimum Viable Product
 
