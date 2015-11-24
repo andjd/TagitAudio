@@ -3,8 +3,8 @@ class Api::AnnotationsController < ApplicationController
     ep = Episode.find(params[:episode_id])
 
     if ep
-      time = params[:annotation][:percentLocation] * ep.duration
-      if (@annotation = ep.annotations.create!(params.require(:annotation).permit(:user_id, :body).merge({time: time})))
+      time = params[:annotation][:percentLocation].to_f * ep.duration
+      if (@annotation = ep.annotations.create(params.require(:annotation).permit(:user_id, :body).merge({time: time})))
           @eps = [ep]
           render "api/episodes/index"
       else
