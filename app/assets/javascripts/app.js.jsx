@@ -27,7 +27,7 @@
       return (
         <div className="window">
           <TA.HeaderBar />
-          <TA.Nav />
+          <TA.Nav active={this.props.location.pathname.substr(1)}/>
 
           {this.props.children}
 
@@ -37,7 +37,6 @@
   });
 
   $(document).ready(function() {
-    
     React.render(
       (
         <Router>
