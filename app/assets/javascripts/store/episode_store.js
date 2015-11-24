@@ -17,20 +17,7 @@
       return episodes.slice();
     },
 
-    getAnnotations: function (epId) {
-      var ep = episodes.filter(function(e) {
-        return (e.episode_id === epId);
-      })[0];
-      return ep.annotations;
-    },
 
-    addAnnotationListener: function(cb) {
-      this.on(ANNOTATIONS_UPDATE, cb);
-    },
-
-    rmAnnotationListener: function(cb){
-      this.removeListener(ANNOTATIONS_UPDATE, cb);
-    },
 
     addListener: function(cb) {
       this.on(EPISODES_UPDATE, cb);
@@ -47,10 +34,6 @@
           TA.EpisodesStore.emit(EPISODES_UPDATE);
           break;
 
-        case TA.Constants.ANNOTATIONS_RECD:
-          _addAnnotationsToEpisode(payload.episode_id, payload.annotations);
-          TA.EpisodesStore.emit(ANNOTATIONS_UPDATE);
-          break;
       }
     })
 

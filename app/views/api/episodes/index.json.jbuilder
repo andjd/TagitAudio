@@ -1,6 +1,7 @@
 json.array! @eps do |episode|
   json.episode_id episode.id
   json.title episode.title
+  json.duration episode.duration
   json.episode_url episode.episode_url
   json.description episode.description
   json.publication_date episode.publication_date
@@ -11,7 +12,8 @@ json.array! @eps do |episode|
     json.image_url episode.podcast.image_url
   end
   json.annotations do
-    json.array! episode.annotations do |ann|
+  sorted_annotations = episode.annotations.sort
+    json.array! sorted_annotations do |ann|
       json.annotation_id ann.id
       json.body ann.body
       json.time ann.time

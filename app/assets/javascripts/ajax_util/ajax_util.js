@@ -12,6 +12,19 @@
         }
       });
     },
+    
+    createAnnotation: function(params) {
+      $.ajax(("/api/episodes/" + params.episode_id + "/annotations" ), {
+        method: "POST",
+        data: {annotation: params},
+        success: function (data) {
+          TA.Actions.API.recEpisodes(data);
+        },
+        error: function (data) {
+          alert("Annotation Write Fail: " + data );
+        }
+      });
+    }
   
   };
 
