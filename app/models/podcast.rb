@@ -5,6 +5,21 @@ class Podcast < ActiveRecord::Base
 
   has_many :episodes, dependent: :destroy
 
+    MULTIPLIER = [1,60,3600,86400]
+
+    def self.secondify(duration)
+      t = duration.split(":")
+      secs = 0
+      i = 0
+      while !t.empty? do
+        el = t.pop
+        secs += el.to_i * MULTIPLIER[i]
+        i += 1
+      end
+      return secs
+    end
+
+
 
   def self.digest_rss_feed(rss_url)
     feed = Feedjira::Feed.fetch_and_parse(rss_url)
@@ -31,7 +46,7 @@ class Podcast < ActiveRecord::Base
                           description: ep.summary,
                           episode_url: ep.enclosure_url,
                           publication_date: ep.published,
-                          duration: ep.itunes_duration
+                          duration: self.secondify(ep.itunes_duration)
                         )
       e.save!
     end
