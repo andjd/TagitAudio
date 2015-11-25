@@ -6,7 +6,7 @@ class Podcast < ActiveRecord::Base
   has_many :episodes, dependent: :destroy
   
   has_many :followers,
-    thorugh: :follows,
+    through: :follows,
     source: :user
 
     MULTIPLIER = [1,60,3600,86400]

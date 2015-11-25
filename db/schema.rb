@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151124021619) do
+ActiveRecord::Schema.define(version: 20151125153353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "citext"
 
   create_table "annotations", force: :cascade do |t|
     t.integer  "user_id",    null: false
@@ -58,5 +59,28 @@ ActiveRecord::Schema.define(version: 20151124021619) do
 
   add_index "podcasts", ["description"], name: "index_podcasts_on_description", using: :btree
   add_index "podcasts", ["title"], name: "index_podcasts_on_title", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "username",            null: false
+    t.citext   "email"
+    t.string   "hashword",            null: false
+    t.string   "token",               null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "provider"
+    t.string   "uid"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["hashword"], name: "index_users_on_hashword", using: :btree
+  add_index "users", ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true, using: :btree
+  add_index "users", ["provider"], name: "index_users_on_provider", using: :btree
+  add_index "users", ["token"], name: "index_users_on_token", unique: true, using: :btree
+  add_index "users", ["uid"], name: "index_users_on_uid", using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", using: :btree
 
 end
