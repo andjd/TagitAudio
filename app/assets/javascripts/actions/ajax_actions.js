@@ -12,6 +12,13 @@
       });
     },
 
+    recCurrentUser: function (user) {
+      TA.Dispatcher.dispatch ({
+        actionType: TA.Constants.CURRENT_USER_RECD,
+        user: user
+      });
+    },
+
     recAnnotations: function (stuff) {
 
       TA.Dispatcher.dispatch ({

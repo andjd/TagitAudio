@@ -20,8 +20,29 @@
         success: function (data) {
           TA.Actions.API.recEpisodes(data);
         },
+
         error: function (data) {
-          alert("Annotation Write Fail: " + data );
+          alert("Annotation Write Fail: ");
+        }
+      });
+    },
+
+    login: function (params, cb) {
+      $.ajax("/api/session", {
+        method: "POST",
+        data: {user: params},
+        success: function (data) {
+          TA.Actions.API.recCurrentUser(data);
+          cb && cb();
+        }
+      });
+    },
+
+    logout: function () {
+      $.ajax("/api/session", {
+        method: "DELETE",
+        success: function () {
+          TA.Actions.API.recCurrentUser({});
         }
       });
     }

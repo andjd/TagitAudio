@@ -57,7 +57,7 @@
     render: function () {
       var currently_playing = (this.state.options.playing === this.props.episode.episode_id);
       var active = (currently_playing || this.state.activated);
-      
+
       // not functiong as intended:
       var mostRecentActive = (active &&
                 (!this.state.options.playing ||

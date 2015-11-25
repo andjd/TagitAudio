@@ -2,12 +2,14 @@
   'use strict';
   var TA = root.TA = root.TA || {};
 
-  TA.Constants = TA.Constants || {};
 
   TA.Constants = {
     PLAYBACK_CHANGE: "playback",
     EPISODES_RECD: "new episodes",
     ANNOTATIONS_RECD: "new annotations",
+    CURRENT_USER_RECD: "new user login",
+    NEW_CURRENT_USER: "new session",
+    SESSION_ENDED: "user logout",
     NAV: { NEW: "newest",
            FOLLOWING: "following",
            POPULAR: "trending",

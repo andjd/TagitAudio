@@ -9,25 +9,13 @@
 
 
   var App = React.createClass({
-    // getInitialState: function (){
-    //   return {episodes: []};
-    // },
-    //
-    // componentDidMount: function () {
-    //   TA.AjaxUtil.API.fetchEpisodes();
-    //   TA.EpisodesStore.addListener(this.newEpisodes);
-    // },
-    //
-    // newEpisodes: function () {
-    //
-    //   this.setState({episodes: TA.EpisodesStore.all()});
-    // },
+
 
     render: function () {
       return (
         <div className="window">
-          <TA.HeaderBar />
-          <TA.Nav active={this.props.location.pathname.substr(1)}/>
+        <TA.HeaderBar />
+        <TA.Nav active={this.props.location.pathname.substr(1)} />
 
           {this.props.children}
 

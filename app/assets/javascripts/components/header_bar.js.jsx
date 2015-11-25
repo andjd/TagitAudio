@@ -10,6 +10,7 @@
             <span>Tagit</span>
             <span>AUDIO</span>
           </h1>
+          <TA.User />
         </header>
       );
     }

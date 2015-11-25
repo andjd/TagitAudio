@@ -11,13 +11,12 @@ h1, h2, h3, h4, h5, h6, header,  p, strong, em, a , ol {
   text-align: inherit;
   color: inherit;
   background: transparent;
+  z-index:inherit;
 }
 
 ol, ul {
   list-style: none;
 }
-
-
 .group::after {
   content: "";
   display: block;
@@ -30,8 +29,37 @@ $logo: 'Dosis', sans-serif;
 $accent: 'Simonetta', serif;
 $primary-color: #66b2ff;
 $accent-color: hsla(8, 77%, 15%, 0.75);
+$accent-opaque: hsla(8, 77%, 15%, 1);
 $img-height: 150px;
 $player-padding: 10px;
+
+
+body{
+  font-family: $sans;
+  font-size: 16px;
+  color: black;
+}
+
+label {
+  display: block;
+}
+input {
+  display: block;
+}
+
+
+button {
+  color: white;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-family: $logo;
+  font-weight: 600;
+  padding: 5px 9px;
+  margin: 10px;
+  background-color: $accent-color;
+  border: 1px solid $accent-opaque;
+  border-radius: 5px;
+}
 
 .player-top > img {
   top: 0;
@@ -53,7 +81,7 @@ $player-padding: 10px;
 
 .logo {
   font-family: $logo;
-
+  float: left;
 }
 
 .logo > span:first-child {
@@ -92,7 +120,7 @@ nav .nav-el:not(:last-child):after {
 }
 
 
-button {
+.play-button {
   height: 30px;
   width: 30px;
   border-radius: 45%;
@@ -265,4 +293,48 @@ header {
   font-weight: bold;
   font-family: $serif;
 
+}
+
+.modal-scrim {
+  display:block;
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: .5;
+  background-color: red;
+  z-index: -1;
+
+}
+
+.modal-content {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  margin-left: 50%;
+  margin-top: 100px;
+  transform: translateX(-50%);
+}
+.modal {
+  z-index: 1000;
+  position: fixed;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal.active {
+  opacity: 1;
+  pointer-events: all;
+  transition: opacity 0.2s
+}
+
+.modal-content {
+  background-color: white;
 }
