@@ -4,6 +4,10 @@ class Podcast < ActiveRecord::Base
   validates :title, :description, :rss_url, presence: true
 
   has_many :episodes, dependent: :destroy
+  
+  has_many :followers,
+    thorugh: :follows,
+    source: :user
 
     MULTIPLIER = [1,60,3600,86400]
 

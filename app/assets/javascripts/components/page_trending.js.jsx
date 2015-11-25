@@ -10,7 +10,7 @@
     },
 
     componentDidMount: function () {
-      TA.AjaxUtil.API.fetchEpisodes(TA.Constants.NAV.TRENDING);
+      TA.AjaxUtil.API.fetchEpisodes(TA.Constants.NAV.POPULAR);
       TA.EpisodesStore.addListener(this.newEpisodes);
     },
 

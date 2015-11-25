@@ -42,7 +42,7 @@
         <Router>
           <Route path="/" component={App}>
             <Route path={"/" + TA.Constants.NAV.NEW} component={TA.Pages.Newest} />
-            <Route path={"/" + TA.Constants.NAV.POPULAR} />
+            <Route path={"/" + TA.Constants.NAV.POPULAR} component={TA.Pages.Trending} />
             <Route path={"/" + TA.Constants.NAV.FOLLOWING} />
             <Route path={"/" + TA.Constants.NAV.SEARCH} />
           </Route>

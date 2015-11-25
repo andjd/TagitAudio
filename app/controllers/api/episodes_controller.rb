@@ -5,13 +5,26 @@ class Api::EpisodesController < ApplicationController
   end
 
   def trending
-    @eps = Episode.includes(:podcast, :annotations).all #find_by_sql(<<-SQL)
-        #   SELECT *
-        #   FROM episodes
-        #
-        #   SELECT
-        #
-        # SQL
+    @eps = Episode.includes(:podcast, :annotations).find_by_sql(<<-SQL).first(7)
+        SELECT episodes.* , score.annotation_score
+        FROM episodes 
+        JOIN (
+            SELECT
+        	    e.id,
+        	    COALESCE(SUM(1 / (1 + exp((
+        	      DATE_PART('day', current_timestamp - a.created_at) * 24 + 
+        	      DATE_PART('hour', current_timestamp - a.created_at )
+        	      ) - 40) / 8 )), 0) AS annotation_score
+            FROM episodes AS e
+            JOIN annotations AS a
+              ON e.id = a.episode_id
+            GROUP BY e.id
+        ) AS score
+        ON episodes.id = score.id
+        ORDER BY score.annotation_score DESC , episodes.publication_date DESC
+        
+      SQL
+
     render :index
   end
 
@@ -21,12 +34,15 @@ class Api::EpisodesController < ApplicationController
   end
 
   def following
-    @eps = Episode.includes(:podcast, :annotations).all 
+    @eps = Episode.includes(:podcast, :annotations)
+        .join(:podcast).join(:user)
+        .order(:publication_date).reverse_order.first(7)
     # insert stuff here
     # .order(:publication_date).reverse_order.first(7)
     # all episodes of follwed podcasts, order by publication date
     render :index
   end
+
 
   def show
     @eps = [Episode.includes(:podcast, :annotations).find(params[:id])]
