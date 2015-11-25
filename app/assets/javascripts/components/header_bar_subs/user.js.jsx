@@ -38,7 +38,7 @@
     render: function () {
         if (this.state.user) {
           return (<div className="userStatus">
-                    <h6>{this.state.user.username}</h6>
+                    <span>{this.state.user.username}</span>
                     <button onClick={TA.AjaxUtil.API.logout}
                       >logout</button>
                   </div>);

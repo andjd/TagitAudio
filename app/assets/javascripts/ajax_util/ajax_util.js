@@ -33,7 +33,18 @@
         data: {user: params},
         success: function (data) {
           TA.Actions.API.recCurrentUser(data);
-          cb && cb();
+           cb && cb();
+        }
+      });
+    },
+
+    createUser: function (params, cb) {
+      $.ajax("/api/users", {
+        method: "POST",
+        data: {user: params},
+        success: function (data) {
+          TA.Actions.API.recCurrentUser(data);
+           cb && cb();
         }
       });
     },

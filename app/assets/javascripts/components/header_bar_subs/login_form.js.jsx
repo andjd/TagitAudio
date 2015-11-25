@@ -14,7 +14,7 @@
   },
 
   handleUsernameChange: function (e) {
-    this.setState({username: e.currentTarget.value, password: this.state.password});
+    this.setState({username: e.currentTarget.value});
   },
 
   handlePasswordChange: function (e) {

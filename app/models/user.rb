@@ -21,13 +21,10 @@ class User < ActiveRecord::Base
   def self.find_by_creds (username, password)
     user = User.find_by_username(username)
     return nil unless user
-    return nil unless user.hashword.is_password?(password)
+    return nil unless BCrypt::Password.new(user.hashword).is_password?(password)
     user
   end
 
-  def hashword
-    BCrypt::Password.new(super)
-  end
 
   def reset_session
     self.token = SecureRandom.urlsafe_base64

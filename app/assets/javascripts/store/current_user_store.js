@@ -30,7 +30,7 @@
 
     dispactherID: TA.Dispatcher.register(function (payload) {
       switch (payload.actionType) {
-        case TA.Constants.NEW_CURRENT_USER:
+        case TA.Constants.CURRENT_USER_RECD:
           reset_user(payload.user);
           break;
 
