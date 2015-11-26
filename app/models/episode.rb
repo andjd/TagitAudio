@@ -3,6 +3,9 @@ class Episode < ActiveRecord::Base
 
   validates :podcast, presence: true
 
+  include PgSearch
+  multisearchable against: [:title, :description]
+
   belongs_to :podcast
 
   has_many :annotations, dependent: :destroy

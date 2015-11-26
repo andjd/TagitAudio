@@ -6,7 +6,7 @@ class Api::EpisodesController < ApplicationController
 
   def trending
     @eps = Episode.includes(:podcast, :annotations).find_by_sql(<<-SQL).first(7)
-        SELECT episodes.* 
+        SELECT episodes.*
         FROM episodes
         JOIN (
             SELECT

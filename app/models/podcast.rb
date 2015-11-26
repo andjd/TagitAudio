@@ -3,13 +3,16 @@ class Podcast < ActiveRecord::Base
 
   validates :title, :description, :rss_url, presence: true
 
+  include PgSearch
+  multisearchable against: [:title, :description]
+
   has_many :episodes, dependent: :destroy
-  
+
   has_many :followers,
     through: :follows,
     source: :user
 
-    MULTIPLIER = [1,60,3600,86400]
+    MULTIPLIER = [1,60,3600,86_400]  # ... 525_600 * 60
 
     def self.secondify(duration)
       t = duration.split(":")

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151125153353) do
+ActiveRecord::Schema.define(version: 20151126171750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,16 @@ ActiveRecord::Schema.define(version: 20151125153353) do
   add_index "episodes", ["podcast_id"], name: "index_episodes_on_podcast_id", using: :btree
   add_index "episodes", ["publication_date"], name: "index_episodes_on_publication_date", using: :btree
   add_index "episodes", ["title"], name: "index_episodes_on_title", using: :btree
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "searchable_id"
+    t.string   "searchable_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "pg_search_documents", ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id", using: :btree
 
   create_table "podcasts", force: :cascade do |t|
     t.string   "title",       null: false
