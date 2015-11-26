@@ -34,7 +34,7 @@ $accent-color: hsla(8, 77%, 15%, 0.75);
 $accent-opaque: hsla(8, 77%, 15%, 1);
 $accent-loud: #FFC400;
 $accent-loud-dark: #FFA000;
-$img-height: 200px;
+$img-height: 175px;
 $player-padding: 20px;
 
 
@@ -112,19 +112,11 @@ strong {
   color: $accent-loud-dark;
 }
 
-.login-buttons, .user-status{
+.login-buttons, .user-status, .pagination{
   text-align: right;
 }
 
 
-.player-top > img {
-  top: 0;
-  left: 0;
-  height: $img-height;
-  width: $img-height;
-  float: left;
-
-}
 
 
 .top-bar {
@@ -181,36 +173,80 @@ nav .nav-el:not(:last-child):after {
   font-weight: bold;
 }
 
+.player-top > img {
+  top: 0;
+  left: 0;
+  height: $img-height;
+  width: $img-height;
+  float: left;
 
-.play-button {
-  height: 30px;
-  width: 30px;
-  border-radius: 45%;
-  background-color: #eee;
 }
 
-// .container::after {
-//   pointer-events: none;
-//   content: "";
-//   display: block;
-//   position: absolute;
-//   left: -2px;
-//   top: -2px;
-//   height: 100%;
-//   width: 100%;
-//   border-top: 15px solid hsla(180, 50%, 29%, 0.35);
-//   border-left: 15px solid hsla(180, 50%, 29%, 0.35);
-//   border-radius: inherit;
-// }
+[class*="icon-big"] {
+  position: absolute;
+  margin-left: -50px;
+  margin-top: 125px;
+  height: 100px;
+  width: 100px;
+  border: none;
+  background-color: transparent;
+  background-image: image-url("Sprites-2.png");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 300px 200px;
+}
+
+.icon-big-play:hover {
+  border: none;
+  background-color: transparent;
+  background-position: -100px 0;
+
+}
+.icon-big-play:active {
+  border: none;
+  background-color: transparent;
+  background-position: -200px 0;
+
+}
+
+.icon-big-pause {
+  background-position: 0 -100px;
+
+}
+.icon-big-pause:hover {
+  border: none;
+  background-color: transparent;
+  background-position: -100px -100px;
+
+}
+.icon-big-pause:active {
+  border: none;
+  background-color: transparent;
+  background-position: -200px -100px;
+
+}
+
+[class*="icon-small"] {
+  position: absolute;
+  margin-left: -50px;
+  margin-top: 125px;
+  height: 60px;
+  width: 60px;
+  border: none;
+  background-color: transparent;
+  background-image: image-url("Sprites-1.png");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 180px 360px;
+}
+
+
+
 
 .player {
   position: relative;
   background: white;
   margin: 2px 0;
-  // border-top: 1px solid rgba(0, 0, 0, 0.75);
-  // border-left: 1px solid rgba(0, 0, 0, 0.75);
-  // border-bottom: 2px solid rgba(0, 0, 0, 0.5);
-  // border-right: 2px solid rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   overflow: hidden;
   padding: $player-padding
@@ -284,6 +320,7 @@ h3, h4, h5 {
 
 header {
   margin: 0 10px;
+  padding-left: 65px;
 }
 
 .progress-bar, {

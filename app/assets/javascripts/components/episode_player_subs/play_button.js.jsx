@@ -30,10 +30,11 @@
 
       return(
         <div className='controls group' onMouseLeave={this.handleLeave}>
-          <button className="control-el play-button" onClick={this.handleClick}   onMouseEnter={this.handleEnter}>
-            { (this.props.playing) ? "⌚️" : "➤" }
+          <button className={ (this.props.playing) ? "icon-big-pause" : "icon-big-play" }
+                  onClick={this.handleClick}
+                  onMouseEnter={this.handleEnter}>
           </button>
-          {(this.props.playing && this.state.hover ) ? (
+          {(false && this.props.playing && this.state.hover ) ? (
             <TA.Controls  episode={this.props.episode}
                         options={this.props.options}
                         callback={this.props.callback}
