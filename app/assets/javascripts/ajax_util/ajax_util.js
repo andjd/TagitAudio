@@ -4,12 +4,28 @@
   var AjaxUtil = TA.AjaxUtil = TA.AjaxUtil || {};
 
   TA.AjaxUtil.API = {
+    search: function(searchTerms, callback) {
+      debugger
+      $.ajax(("/api/search/"), {
+        method: "GET",
+        data: searchTerms,
+        success: function (data) {
+          TA.Actions.API.recEpisodes(data);
+          },
+        complete: function () {
+          callback && callback();
+        }
+
+
+      });
+    },
+
     fetchEpisodes: function(mode) {
       $.ajax(("/api/episodes/" + mode), {
         method: "GET",
         success: function (data) {
           TA.Actions.API.recEpisodes(data);
-        }
+          },
       });
     },
 

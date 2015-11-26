@@ -32,7 +32,7 @@
             <Route path={"/" + TA.Constants.NAV.NEW} component={TA.Pages.Newest} />
             <Route path={"/" + TA.Constants.NAV.POPULAR} component={TA.Pages.Trending} />
             <Route path={"/" + TA.Constants.NAV.FOLLOWING} />
-            <Route path={"/" + TA.Constants.NAV.SEARCH} />
+            <Route path={"/" + TA.Constants.NAV.SEARCH} component={TA.Pages.Search}/>
           </Route>
         </Router>
       ),
