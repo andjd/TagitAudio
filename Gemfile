@@ -5,6 +5,8 @@ gem 'flux-rails-assets', '~> 2.1.0'
 gem 'feedjira'
 gem "paperclip", "~> 4.3"
 
+gem 'pg_search'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use postgresql as the database for Active Record

@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   root to: 'static_pages#root'
   namespace :api, defaults: {format: :json} do
+    resource :search, only: :show
     resource :session, only: [:show, :create, :destroy]
     resources :users, only: [:create]
-    get "/users/availability/:username", to: "users#availability" 
+    get "/users/availability/:username", to: "users#availability"
     resources :podcasts, only: :create
     resources :annotions, only: :show
     resources :episodes, only: [:index, :show] do
