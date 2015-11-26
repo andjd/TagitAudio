@@ -16,7 +16,6 @@
     },
 
     handleEnter: function (e) {
-
       if (this.props.playing) {
         this.setState({hover: true});
       }
@@ -34,7 +33,7 @@
                   onClick={this.handleClick}
                   onMouseEnter={this.handleEnter}>
           </button>
-          {(false && this.props.playing && this.state.hover ) ? (
+          {(true || this.props.playing && this.state.hover ) ? (
             <TA.Controls  episode={this.props.episode}
                         options={this.props.options}
                         callback={this.props.callback}

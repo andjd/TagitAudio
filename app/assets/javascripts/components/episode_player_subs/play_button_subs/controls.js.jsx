@@ -29,15 +29,15 @@
     },
 
     render: function () {
-      return(<span>
-        <button className="control-el" onClick={this.muteToggle} >{(this.state.muted) ? "🔈" : "🔇"}</button>
-        <label className="control-el" >🚀
+      return(<div className="pop-ups">
+        <nbutton  onClick={this.muteToggle} className={(this.state.muted) ? "icon-small-unmute" : "icon-small-mute"}></nbutton>
+        <label className="icon-small-speed" >
           <input className="slider" type='range' max="2" min="0.5" step="0.25" value={this.state.playback_speed} onChange={this.speedUpdate} />
         </label>
-        <label className="control-el" >📶
+        <label className="icon-small-vol" >
           <input className="slider" type="range" max="1" min="0" step="0.01"value={this.state.volume}  onChange={this.volumeUpdate} />
         </label>
-      </span>);
+      </div>);
     }
   });
 
