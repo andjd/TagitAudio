@@ -43,8 +43,11 @@
                     onFocus={this.blankDefaults}
                     onChange={this.handlePasswordChange} />
           </label>
-          <button onClick={this.props.voidModal}>Cancel</button>
-          <button>Log In</button>
+
+          <div className="login-buttons">
+            <button onClick={this.props.voidModal} className="button-cancel" >Cancel</button>
+            <button>Log In</button>
+          </div>
         </form>
       );
     }

@@ -25,7 +25,7 @@
 
     render: function () {
       return (
-        <div className="playerList">
+        <div className="playerList w">
           { this.state.episodes.map(function (ep) {
             return (<TA.EpisodePlayer key={ep.episode_id }episode={ep} />);
             })

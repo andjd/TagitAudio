@@ -5,7 +5,14 @@
   TA.CreateAccountForm = React.createClass ({
 
   getInitialState: function () {
-    return({username: "username", email: "you@example.ninja", password: "password", password2: "password" });
+    return({username: "username",
+            email: "you@example.ninja",
+            password: "password",
+            password2: "password",
+            passwordOK: true,
+            passwordsMatch: true,
+            usernameOK: true,
+            intervalID: null});
   },
 
   blankDefaults: function () {
@@ -17,24 +24,54 @@
   },
 
   handleUsernameChange: function (e) {
-    this.setState({username: e.currentTarget.value});
+    var username = e.currentTarget.value;
+    var me = this;
+    clearInterval(this.state.intervalID);
+
+    this.setState({username: username, intervalID: (
+      setInterval(function () {
+        TA.AjaxUtil.API.checkUsernameAvailability(username,
+            function() {
+              me.setState({usernameOK: true});
+              clearInterval(me.state.intervalID);},
+            function() {
+              me.setState({usernameOK: false});
+              clearInterval(me.state.intervalID);}
+          );
+      }, 500))});
   },
 
   handlepasswordChange: function (e) {
     this.setState({password: e.currentTarget.value});
+    setTimeout(this.checkPasswordLength.bind(this, e.currentTarget.value), 750);
+  },
+
+  checkPasswordLength: function (pw) {
+    this.setState({passwordOK: (pw.length > 7)});
   },
 
   handlePassword2Change: function (e) {
     this.setState({password2: e.currentTarget.value});
+    setTimeout(this.checkPasswordsMatch.bind(this, e.currentTarget.value), 750);
+  },
+
+  checkPasswordsMatch: function (newPw2) {
+    this.setState({passwordsMatch: (this.state.password === newPw2)});
   },
 
   handleEmailChange: function (e) {
     this.setState({email: e.currentTarget.value});
   },
 
+
   createUser: function () {
-    TA.AjaxUtil.API.createUser(this.state,
-                          this.props.voidModal);
+    if (this.state.passwordOK &&
+     this.state.usernameOK &&
+     this.state.passwordsMatch &&
+     this.state.username !== "username") {
+
+        TA.AjaxUtil.API.createUser(this.state, this.props.voidModal);
+        }
 
   },
 
@@ -45,7 +82,11 @@
             <input  type="text"
                     value={this.state.username}
                     onFocus={this.blankDefaults}
-                    onChange={this.handleUsernameChange} />
+                    onChange={this.handleUsernameChange}
+                    className={(this.state.usernameOK) ? "ok" : "invalid"}
+                    on />
+            {(this.state.usernameOK) ? "" :
+              <strong>Sorry, this username is unavailable. </strong>}
           </label>
           <label>Email
             <input  type="email"
@@ -58,15 +99,27 @@
                     value={this.state.password}
                     onFocus={this.blankDefaults}
                     onChange={this.handlepasswordChange} />
+            {(this.state.passwordOK) ? "" :
+                <strong>Password too short.</strong>}
           </label>
-          <label>Re-Type Password
+          <label>Retype Password
             <input  type="password"
                     value={this.state.password2}
                     onFocus={this.blankDefaults}
                     onChange={this.handlePassword2Change} />
+            {(this.state.passwordsMatch) ? "" :
+                  <strong>Passwords do not match.</strong>}
           </label>
-          <button onClick={this.props.voidModal}>Cancel</button>
-          <button>Create Account</button>
+
+          <div className="login-buttons">
+            <button onClick={this.props.voidModal} className="button-cancel">Cancel</button>
+            <button disabled={
+                (this.state.passwordOK &&
+                 this.state.usernameOK &&
+                 this.state.passwordsMatch &&
+                 this.state.username !== "username") ? false : true}
+              >Create Account</button>
+          </div>
         </form>
       );
     }

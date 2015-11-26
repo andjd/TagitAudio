@@ -49,6 +49,14 @@
       });
     },
 
+    checkUsernameAvailability: function (username, successCB, errorCB) {
+      $.ajax("/api/users/availability/" + username , {
+        method: "GET",
+        success: successCB,
+        error: errorCB
+      });
+    },
+
     logout: function () {
       $.ajax("/api/session", {
         method: "DELETE",

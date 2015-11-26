@@ -12,6 +12,7 @@ h1, h2, h3, h4, h5, h6, header,  p, strong, em, a , ol {
   color: inherit;
   background: transparent;
   z-index:inherit;
+  text-align: left;
 }
 
 ol, ul {
@@ -26,27 +27,52 @@ ol, ul {
 $serif: 'Quattrocento', serif;
 $sans: 'Quattrocento Sans', sans-serif;
 $logo: 'Dosis', sans-serif;
-$accent: 'Simonetta', serif;
+// $accent: 'Simonetta', serif;
 $primary-color: #66b2ff;
+$accent-hint: hsla(8, 77%, 15%, 0.35);
 $accent-color: hsla(8, 77%, 15%, 0.75);
 $accent-opaque: hsla(8, 77%, 15%, 1);
-$img-height: 150px;
-$player-padding: 10px;
+$accent-loud: #FFC400;
+$accent-loud-dark: #FFA000;
+$img-height: 200px;
+$player-padding: 20px;
 
 
 body{
   font-family: $sans;
   font-size: 16px;
   color: black;
+  background-color: $accent-hint;
+}
+
+.w {
+  width: 1000px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 label {
   display: block;
-}
-input {
-  display: block;
+  font-family: $serif;
+  font-weight: bold;
+  font-size: 20px;
 }
 
+input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  border : 1px solid $accent-color;
+  background-color: $accent-hint;
+  border-radius: 0 7px 0 7px;
+  padding: 7px;
+  margin-top: 7px;
+  margin-bottom: 16px;
+  font-size: 20px;
+  font-family: $logo;
+  font-weight: normal;
+
+}
 
 button {
   color: white;
@@ -61,14 +87,42 @@ button {
   border-radius: 5px;
 }
 
+button:hover {
+  background-color: $accent-opaque;
+  opacity: .95;
+}
+
+button:disabled:hover {
+  border-color: $accent-loud-dark;
+  color: $accent-loud;
+}
+
+strong {
+  display: block;
+  color: $accent-loud-dark;
+  font-family: $sans;
+  font-size: 14px;
+  margin-bottom: 16px;
+  font-weight: normal;
+}
+
+.button-cancel {
+  background-color: white;
+  border-color: $accent-loud-dark;
+  color: $accent-loud-dark;
+}
+
+.login-buttons, .user-status{
+  text-align: right;
+}
+
+
 .player-top > img {
   top: 0;
   left: 0;
   height: $img-height;
   width: $img-height;
   float: left;
-  margin-left: -$player-padding;
-  margin-top: -$player-padding;
 
 }
 
@@ -77,9 +131,12 @@ button {
   margin: 0;
   padding: 15px 25px;
   background-color: $primary-color;
+  border-bottom: 3px solid $accent-color;
+
 }
 
 .logo {
+  padding-left: 30px;
   font-family: $logo;
   float: left;
 }
@@ -95,8 +152,10 @@ button {
 }
 
 nav {
+  background: white;
+  padding-left: 50px;
   display: block;
-  font-family: $serif;
+  font-family: $logo;
   font-size: 24px;
 }
 .nav-el {
@@ -107,6 +166,10 @@ nav {
 .nav-el > a:hover {
   color: $primary-color;
 }
+
+.nav-el > a:active {
+  color: $accent-loud-dark;
+}
 nav .nav-el:not(:last-child):after {
   content: "//";
   color: $primary-color;
@@ -115,8 +178,7 @@ nav .nav-el:not(:last-child):after {
 }
 
 .nav-el.active > a {
-  font-family: $accent;
-  font-weight: 800;
+  font-weight: bold;
 }
 
 
@@ -127,30 +189,31 @@ nav .nav-el:not(:last-child):after {
   background-color: #eee;
 }
 
-.container::after {
-  pointer-events: none;
-  content: "";
-  display: block;
-  position: absolute;
-  left: -2px;
-  top: -2px;
-  height: 100%;
-  width: 100%;
-  border-top: 15px solid hsla(180, 50%, 29%, 0.35);
-  border-left: 15px solid hsla(180, 50%, 29%, 0.35);
-  border-radius: inherit;
-}
+// .container::after {
+//   pointer-events: none;
+//   content: "";
+//   display: block;
+//   position: absolute;
+//   left: -2px;
+//   top: -2px;
+//   height: 100%;
+//   width: 100%;
+//   border-top: 15px solid hsla(180, 50%, 29%, 0.35);
+//   border-left: 15px solid hsla(180, 50%, 29%, 0.35);
+//   border-radius: inherit;
+// }
 
 .player {
   position: relative;
   background: white;
-  margin: 20px;
-  border-top: 1px solid rgba(0, 0, 0, 0.75);
-  border-left: 1px solid rgba(0, 0, 0, 0.75);
-  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
-  border-right: 2px solid rgba(0, 0, 0, 0.5);
-  border-radius: 20px;
+  margin: 2px 0;
+  // border-top: 1px solid rgba(0, 0, 0, 0.75);
+  // border-left: 1px solid rgba(0, 0, 0, 0.75);
+  // border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+  // border-right: 2px solid rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
   overflow: hidden;
+  padding: $player-padding
 }
 .controls {
   display: block;
@@ -220,7 +283,7 @@ h3, h4, h5 {
 }
 
 header {
-  margin: 10px 10px;
+  margin: 0 10px;
 }
 
 .progress-bar, {
@@ -242,6 +305,7 @@ header {
 }
 
 .annotation-marker {
+  box-sizing: content-box;
   height: 20px;
   width: 20px;
   border-radius: 45% 0 45% 45%;
@@ -304,19 +368,29 @@ header {
   left: 0;
   right: 0;
   opacity: .5;
-  background-color: red;
+  background-color: $accent-opaque;
   z-index: -1;
 
 }
 
 .modal-content {
   position: relative;
-  width: 600px;
-  height: 600px;
+  width: 500px;
   margin-left: 50%;
   margin-top: 100px;
   transform: translateX(-50%);
+  background-color: white;
+  border: 1px solid $accent-opaque;
+  border-radius: 25px;
+  overflow: hidden;
 }
+
+.modal-content button {
+  margin-right: 0;
+  margin-bottom: 0
+
+}
+
 .modal {
   z-index: 1000;
   position: fixed;
@@ -327,14 +401,22 @@ header {
   right: 0;
   opacity: 0;
   pointer-events: none;
+  transition: opacity .2s, height .2s;
+
+
 }
 
 .modal.active {
   opacity: 1;
   pointer-events: all;
-  transition: opacity 0.2s
 }
 
-.modal-content {
-  background-color: white;
+.modal form {
+  box-sizing: border-box;
+  padding: 40px;
+}
+
+
+.search {
+
 }

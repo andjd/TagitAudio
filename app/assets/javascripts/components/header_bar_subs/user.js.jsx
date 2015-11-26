@@ -37,19 +37,21 @@
 
     render: function () {
         if (this.state.user) {
-          return (<div className="userStatus">
-                    <span>{this.state.user.username}</span>
+          return (<div className="user-status">
+                    <span>{"Welcome, " + this.state.user.username}</span>
                     <button onClick={TA.AjaxUtil.API.logout}
                       >logout</button>
                   </div>);
         } else {
           return (<div className="login-buttons">
-                    <button className="login-login"
+                    <span className="login-buttons">
+                      <button className="login-login"
                             onClick={this.activateModalLogin}
                             >Log In</button>
-                    <button className="login-create"
+                          <button className="login-create"
                             onClick={this.activateModalCreate}
                             >Create Account</button>
+                    </span>
                     <TA.LoginModal
                         activeModal={this.state.modal}
                         voidModal={this.voidModal}
