@@ -13,6 +13,7 @@
           };
 
           TA.AjaxUtil.API.createAnnotation(form_params);
+          this.props.cancel();
 
       },
 
@@ -23,7 +24,7 @@
                     <textarea />
                 </label>
                 <div className="new-ann-buttons">
-                  <button onClick={this.cancel}>✘</button>
+                  <button onClick={this.props.cancel}>✘</button>
                   <button>✔︎</button>
                 </div>
             </form>

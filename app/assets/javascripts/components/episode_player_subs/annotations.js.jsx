@@ -42,6 +42,10 @@
       this.setState({form: true});
     },
 
+    hideForm: function () {
+      this.setState({form: false});
+    },
+
     // componentDidUpdate: function () {
     //
     //   debugger
@@ -76,7 +80,8 @@
                 <div>
                   <button className="new-annotation-button" onClick={this.showForm}>✚</button>
                   <TA.NewAnnotationForm episode={this.props.episode}
-                                    playbackPos={this.props.playbackPos} />
+                                    playbackPos={this.props.playbackPos}
+                                    cancel={this.hideForm} />
                 </div>
               ):(
                 <div>

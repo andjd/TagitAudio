@@ -438,12 +438,15 @@ h3, h4, h5 {
 }
 
 .annotation-box {
-
+  position: relative;
   height: 0;
   display: block;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow: hidden;
 
+}
+.annotation-box ol {
+  overflow-y: scroll;
+  height: 75px;
 }
 
 .new-ann-buttons {
