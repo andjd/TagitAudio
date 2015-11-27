@@ -33,10 +33,11 @@
                   onClick={this.handleClick}
                   onMouseEnter={this.handleEnter}>
           </button>
-          {(true || this.props.playing && this.state.hover ) ? (
+          {(this.props.playing && this.state.hover ) ? (
             <TA.Controls  episode={this.props.episode}
                         options={this.props.options}
                         callback={this.props.callback}
+                        seekCallback={this.props.seekCallback}
                           />
             ) : "" }
         </div>

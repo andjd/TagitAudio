@@ -42,8 +42,9 @@ body{
   font-family: $sans;
   font-size: 16px;
   color: black;
-  background-color: $accent-hint;
+  background-color: hsla(8, 77%, 15%, 0.1)
 }
+
 
 .w {
   width: 1000px;
@@ -58,7 +59,7 @@ label {
   font-size: 20px;
 }
 
-input {
+input, textarea {
   display: block;
   box-sizing: border-box;
   width: 100%;
@@ -179,13 +180,14 @@ nav .nav-el:not(:last-child):after {
   left: 0;
   height: $img-height;
   width: $img-height;
+  margin-right: 70px;
   float: left;
 
 }
 
 [class*="icon-big"] {
   position: absolute;
-  margin-left: -50px;
+  margin-left: $img-height - 50px;
   margin-top: 125px;
   height: 100px;
   width: 100px;
@@ -251,7 +253,82 @@ nav .nav-el:not(:last-child):after {
   background-position: -120px 0;
 }
 
+.icon-small-forward{
+  background-position: 0 -60px;
+}
 
+.icon-small-forward:hover {
+  background-position: -60px -60px;
+}
+.icon-small-forward:active {
+  background-position: -120px -60px;
+}
+
+.icon-small-back{
+  background-position: 0 -120px;
+}
+
+.icon-small-back:hover {
+  background-position: -60px -120px;
+}
+.icon-small-back:active {
+  background-position: -120px -120px;
+}
+
+.icon-small-speed{
+  background-position: 0 -180px;
+}
+
+.icon-small-speed:hover {
+  background-position: -60px -180px;
+}
+.icon-small-speed:active {
+  background-position: -120px -180px;
+}
+
+.icon-small-mute{
+  background-position: 0 -240px;
+}
+
+.icon-small-mute:hover {
+  background-position: -60px -240px;
+}
+.icon-small-mute:active {
+  background-position: -120px -240px;
+}
+
+.icon-small-unmute{
+  background-position: 0 -300px;
+}
+
+.icon-small-unmute:hover {
+  background-position: -60px -300px;
+}
+.icon-small-unmute:active {
+  background-position: -120px -300px;
+}
+
+[class*="icon-small"] > input {
+  -webkit-appearance: slider-vertical;
+  display: block;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 45px;
+  height: 70px;
+  top: -70px;
+  left: 7px;
+  background-color: $accent-loud;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+
+[class*="icon-small"]:hover > input {
+  opacity: 1;
+  pointer-events: all;
+
+}
 
 .player {
   position: relative;
@@ -262,37 +339,28 @@ nav .nav-el:not(:last-child):after {
   padding: $player-padding
 }
 
-.controls .pop-ups {
+.pop-ups {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 30px;
+  float: left;
   position: absolute;
   display: block;
-  height: 100px;
-  width: 600px;
-  background: red;
+  top: $img-height - 55px;
+  left: $img-height + 70px;
 }
 
 
 
 
-
-.control-el > .slider {
-  display: none;
-  position: absolute;
-  padding: 10px 0;
-  margin-left: 40px solid transparent;
-  top: 0;
-  left: 45px;
-}
-
-.control-el:hover > .slider {
-  display: block;
-  position: absolute;
-}
-
-
-
-.player-top > header {
+.player-top {
+  box-sizing: padding-box;
   height: $img-height;
   overflow: hidden;
+  padding-bottom: 20px
+}
+.player-top > header {
+  width: auto;
+  padding-right: 35px;
 }
 
 h3, h4 {
@@ -305,31 +373,33 @@ h3 {
 }
 
 h5 {
+  height: 95px;
   font-family: $sans;
   font-size: 14px;
-}
-
-h3, h4, h5 {
-  margin: 8px;
-}
-
-header {
-  margin: 0 10px;
-  padding-left: 65px;
-}
-
-.progress-bar, {
-  height: 40px;
-  margin: 10px 10px 0 0;
-  background-image: url(https://i.ytimg.com/vi/TQBCCToel5I/maxresdefault.jpg);
-  background-position: 0 -50%;
   overflow: hidden;
 }
 
+
+h3, h4, h5 {
+  margin-bottom: 8px;
+}
+
+
 .player-bottom {
-  padding-left: (10px + $img-height);
+  padding-left: (49px + $img-height);
   margin-bottom: 20px;
 }
+
+.progress-bar, .annotation-markerbar {
+  margin: 0 10px 0 0;
+}
+
+.progress-bar {
+  height: 3px;
+  background-color: $accent-color;
+  overflow: hidden;
+}
+
 
 .annotation-markerbar {
   margin-bottom: 10px;
@@ -343,13 +413,13 @@ header {
   border-radius: 45% 0 45% 45%;
   transform: rotate(-.125turn) translateX(-50%);
   position: absolute;
-  border: 2px solid black;
+  border: 2px solid $accent-color;
   overflow: hidden;
   z-index: 100;
 }
 
 .annotation-marker.active {
-  border: 5px solid red;
+  border: 4px solid $accent-loud-dark;
   z-index: 150;
 }
 
@@ -370,18 +440,52 @@ header {
 .annotation-box {
 
   height: 0;
-  border: 0px solid orange;
   display: block;
   overflow-y: scroll;
+  overflow-x: hidden;
 
 }
-.annotation-box.active {
-  height: 60px;
-  border: 3px solid orange;
+
+.new-ann-buttons {
+  float:left;
+  width: 30px;
 }
+
+.new-ann-buttons > button {
+  margin: 7px;
+  float: left;
+}
+
+.annotation-box.active {
+  width: 700px;
+  box-sizing: border-box;
+  height: 100px;
+  padding-top: 15px;
+}
+
+.annotation-box label {
+  font-size: 16px;
+  float: left;
+  width: 575px;
+}
+.annotation-box textarea {
+  font-size: 16px;
+  height: 50px;
+  margin-bottom: 0;
+}
+
+.new-annotation-button {
+  position: relative;
+  display: block;
+  float: left;
+  margin: 10px;
+  margin-left: 0;
+  margin-top: 30px;
+}
+
 .annotation-body {
   font-family: $sans;
-  font-size: 14px;
+  font-size: 16px;
 
 }
 

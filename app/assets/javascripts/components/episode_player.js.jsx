@@ -11,11 +11,22 @@
                playbackPos: 0,
                duration: this.props.episode.duration,
                activated: false,
-               seek: null};
+               seek: null,
+               lastPlaying: false};
     },
 
+
+
+
     updatePlaybackOptions: function () {
-      this.setState({ options: TA.PlaybackOptionsStore.options() });
+      var newOpts = TA.PlaybackOptionsStore.options();
+      if (newOpts.playing === -1 &&
+          this.state.options.playing === this.props.episode.episode_id){
+          this.setState({lastPlaying: true, options: newOpts});
+      } else {
+          this.setState({lastPlaying: false, options: newOpts});
+      }
+
     },
 
     audioStateUpdate: function (newState) {
@@ -28,6 +39,10 @@
 
     annotationClick: function (time) {
       this.setState({seek: time});
+    },
+
+    seekButtons: function (timeDiff) {
+      this.setState({seek: this.state.playbackPos * this.state.duration + timeDiff});
     },
 
     clearSeek: function () {
@@ -58,20 +73,21 @@
       var currently_playing = (this.state.options.playing === this.props.episode.episode_id);
       var active = (currently_playing || this.state.activated);
 
-      // not functiong as intended:
       var mostRecentActive = (active &&
                 (!this.state.options.playing ||
                    currently_playing ||
-                   this.state.options.playing === -1));
+                   this.state.lastPlaying
+                 ));
 
       return (
-        <article className="player container">
+        <article className="player group">
           <div className="player-top">
-            <TA.EpisodeImage episode={this.props.episode} />
             <TA.PlayButton   episode={this.props.episode}
                              playing={currently_playing}
                              options={this.state.options}
+                             seekCallback={this.seekButtons}
                              callback={this.localUpdatePlaybackOptions}/>
+            <TA.EpisodeImage episode={this.props.episode} />
             <TA.EpisodeInfo  episode={this.props.episode} />
           </div>
           <div className="player-bottom">

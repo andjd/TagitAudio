@@ -1,0 +1,48 @@
+(function(root) {
+  'use strict';
+  var TA = root.TA = root.TA || {};
+  var Link = ReactRouter.Link;
+
+
+  TA.Splash = React.createClass({
+    render: function () {
+      return (
+        <div className="splash">
+          <TA.HeaderBar />
+          <div className="big-logo">
+            <span>Tagit</span>
+            <span>audio</span>
+          </div>
+          <TA.SplashSub text="Listen"
+            subtext="to podcasts from around the web"
+            image="<%= image_url "hear.png" %>"
+            id="1" />
+          <TA.SplashSub text="Annotate"
+            subtext="easily while you listen"
+            image="<%= image_url "add.png" %>"
+            id="2" />
+          <TA.SplashSub text="Search"
+            subtext="find the percise audio you want to hear"
+            image="<%= image_url "find.png" %>"
+            id="3" />
+        </div>
+      );
+    }
+  });
+
+  TA.SplashSub = React.createClass({
+    render: function (){
+      return (
+        <div className={"w splash-el-" + this.props.id}>
+          <img src={this.props.image} alt="" />
+          <h2>{this.props.text}</h2>
+          <h3>{this.props.subtext}</h3>
+        </div>
+      );
+    }
+
+
+  });
+
+
+}(this));

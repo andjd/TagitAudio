@@ -69,29 +69,37 @@
                   );
             }.bind(this))}
           </ol>
-          <ol className={(this.props.active) ? "annotation-box active" : "annotation-box"}
+          <div className={(this.props.active) ? "annotation-box active" : "annotation-box"}
               ref="annobox">
-            {(this.props.active) ?
-              (ans && ans.map(function (el) {
-                return( <TA.AnnotationView  key={el.annotation_id}
-                                        episode={this.props.episode}
-                                        annotation={el}
-                                        setTemp={this.setTempAnnotation}
-                                        voidTemp={this.voidTempAnnotation}
-                                        current={this.currentAnnotation()}
-                                        clickCallback={this.props.clickCallback}
-                                        />
+            {(this.props.active) ? (
+              (this.state.form) ? (
+                <div>
+                  <button className="new-annotation-button" onClick={this.showForm}>✚</button>
+                  <TA.NewAnnotationForm episode={this.props.episode}
+                                    playbackPos={this.props.playbackPos} />
+                </div>
+              ):(
+                <div>
+                  <button className="new-annotation-button" onClick={this.showForm}>✚</button>
+                  <ol>
+                    {(ans && ans.map(function (el) {
+                      return( <TA.AnnotationView
+                              key={el.annotation_id}
+                              episode={this.props.episode}
+                              annotation={el}
+                              setTemp={this.setTempAnnotation}
+                              voidTemp={this.voidTempAnnotation}
+                              current={this.currentAnnotation()}
+                              clickCallback={this.props.clickCallback}
+                              />
 
-                  );
-            }.bind(this))
-          ) : "" }
-        </ol>
-        <button className="button"
-                onClick={this.showForm}
-                >➕</button>
-        {(this.state.form) ?
-          <TA.NewAnnotationForm episode={this.props.episode}
-                                playbackPos={this.props.playbackPos} /> : "" }
+                          );
+                      }.bind(this)))}
+                  </ol>
+                </div>
+          )) : "" }
+        </div>
+
 
       </div>
       );

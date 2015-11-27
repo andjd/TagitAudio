@@ -11,6 +11,8 @@
   var App = React.createClass({
 
 
+
+
     render: function () {
       return (
         <div className="window">
@@ -34,6 +36,7 @@
             <Route path={"/" + TA.Constants.NAV.FOLLOWING} />
             <Route path={"/" + TA.Constants.NAV.SEARCH} component={TA.Pages.Search}/>
           </Route>
+          <Route path="/welcome" component={TA.Splash} />
         </Router>
       ),
       document.getElementById("react")

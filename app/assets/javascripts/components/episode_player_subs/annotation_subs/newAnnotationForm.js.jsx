@@ -1,7 +1,7 @@
 (function(root) {
   'use strict';
   var TA = root.TA = root.TA || {};
-  
+
   TA.NewAnnotationForm = React.createClass({
       addAnnotation: function (e) {
           e.preventDefault;
@@ -11,21 +11,24 @@
               percentLocation: this.props.playbackPos,
               body: e.currentTarget.firstChild.lastChild.value
           };
-          
+
           TA.AjaxUtil.API.createAnnotation(form_params);
-          
+
       },
-      
+
       render: function () {
           return (
               <form className="newAnnotation" onSubmit={this.addAnnotation}>
                 <label> Your Annotation
                     <textarea />
                 </label>
-                <button>✔</button>
+                <div className="new-ann-buttons">
+                  <button onClick={this.cancel}>✘</button>
+                  <button>✔︎</button>
+                </div>
             </form>
-                
-                    
+
+
               );
       }
   });

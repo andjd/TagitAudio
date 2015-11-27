@@ -17,4 +17,5 @@
 //= require react
 //= require react_router.js
 // require wavesurfer.js
+// require splash.js.jsx.erb
 //= require_tree .

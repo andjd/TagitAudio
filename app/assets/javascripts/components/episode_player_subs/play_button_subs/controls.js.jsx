@@ -28,15 +28,25 @@
       this.props.callback({volume: parseFloat(e.currentTarget.value)});
     },
 
+    seekForward: function () {
+      this.props.seekCallback(30);
+    },
+
+    seekBack: function () {
+      this.props.seekCallback(-30);
+    },
+
     render: function () {
       return(<div className="pop-ups">
-        <nbutton  onClick={this.muteToggle} className={(this.state.muted) ? "icon-small-unmute" : "icon-small-mute"}></nbutton>
-        <label className="icon-small-speed" >
+        <crtl onClick={this.seekBack} className="icon-small-back"></crtl>
+        <ctrl  onClick={this.muteToggle} className={(this.state.muted) ? "icon-small-unmute" : "icon-small-mute"}></ctrl>
+        <ctrl className="icon-small-speed" >
           <input className="slider" type='range' max="2" min="0.5" step="0.25" value={this.state.playback_speed} onChange={this.speedUpdate} />
-        </label>
-        <label className="icon-small-vol" >
+        </ctrl>
+        <ctrl className="icon-small-vol" >
           <input className="slider" type="range" max="1" min="0" step="0.01"value={this.state.volume}  onChange={this.volumeUpdate} />
-        </label>
+        </ctrl>
+        <crtl onClick={this.seekForward} className="icon-small-forward"></crtl>
       </div>);
     }
   });
