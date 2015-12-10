@@ -4,7 +4,7 @@
 
 [heroku]: www.tagit.audio
 
-## Minimum Viable Product
+## About
 
 Tagit Audio is an interactive website built with Postgres, Ruby on Rails, Javascript, React, Flux, and jQuery that allows users to listen to and tag podcasts in a social community. Its functionality and layout is loosely modeled after SoundCloud. It has a tagging functionality that allows users to mark specitifc points in an episode and add descriptions or comments that apply to that part of the audio.  Users can then search and find podcasts based on metadata and user tags, and clicking on a tag will seek directly to the related audio content.
 
