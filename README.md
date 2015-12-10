@@ -1,4 +1,4 @@
-# Tagit dot Audio
+# Tagit Audio
 
 [Live][heroku]
 
