@@ -1,0 +1,50 @@
+.loading {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left:0;
+	right:0;
+	background-color: hsla(8, 77%, 15%, 0.35)
+}
+
+.loading > span {
+	z-index: 1;
+	font-size: 250px;
+	font-weight: bold;
+	font-family: 'Dosis', sans-serif;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -35%);
+}
+
+[class*="loading-container-"] {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+}
+
+.loading-container-sm {
+	height: 160px;
+	width: 160px;
+	transform: translate(0px, 40px);
+}
+.loading-container-med {
+	height: 220px;
+	width: 220px;
+	transform: translate(0px, 20px);
+}
+.loading-container-lg {
+	height: 280px;
+	width: 280px;
+}
+
+
+[class*="loading-circle-"] {
+	border-radius: 50%;
+	background-color: hsla(8, 77%, 15%, 0.45);
+	width: 0;
+	height: 0;
+	opacity: 0;
+	transform: translate(-50%, -50%)
+}

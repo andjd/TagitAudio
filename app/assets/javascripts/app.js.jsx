@@ -35,6 +35,7 @@
             <Route path={"/" + TA.Constants.NAV.POPULAR} component={TA.Pages.Trending} />
             <Route path={"/" + TA.Constants.NAV.FOLLOWING} />
             <Route path={"/" + TA.Constants.NAV.SEARCH} component={TA.Pages.Search}/>
+            <Route path="/test" component={TA.LoadingModal} />
           </Route>
           <Route path="/welcome" component={TA.Splash} />
         </Router>
