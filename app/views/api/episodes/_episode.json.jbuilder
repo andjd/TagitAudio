@@ -2,7 +2,7 @@ json.episode_id episode.id
 json.title episode.title
 json.duration episode.duration
 json.episode_url episode.episode_url
-json.description episode.description
+json.description strip_tags (episode.description.delete("\n").split("</p>").join("\n"))
 json.publication_date episode.publication_date
 json.mime_type episode.mime_type
 json.podcast do
@@ -17,6 +17,6 @@ sorted_annotations = episode.annotations.sort
     json.body ann.body
     json.time ann.time
     json.user_id ann.user_id
-    # json.user_avatar_url ann.user.avatar_url
+    json.user_avatar image_path ann.user.avatar
   end
 end

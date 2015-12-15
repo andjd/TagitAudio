@@ -8,7 +8,7 @@ class Annotation < ActiveRecord::Base
   belongs_to :episode
   has_one :podcast, through: :episode, source: :podcast
 
-  has_many :users
+  belongs_to :user
 
   include Comparable
 

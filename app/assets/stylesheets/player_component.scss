@@ -213,6 +213,7 @@ h5 {
   font-family: $sans;
   font-size: 14px;
   overflow: hidden;
+  white-space: pre-wrap;
 }
 
 
@@ -260,10 +261,10 @@ h3, h4, h5 {
 }
 
 .annotation-marker > img {
-  height: 28px;
-  width: 28px;
-  margin-left: -4px;
-  margin-top: -4px;
+  height: 45px;
+  width: 45px;
+  margin-left: -18px;
+  margin-top: -7px;
   transform: rotate(.125turn);
   background-color: white;
 }

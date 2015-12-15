@@ -43,7 +43,7 @@
                   onMouseLeave={this.voidTemp}
                   onClick={this.seekToMe}
                   >
-               <img src="https://mysticmeeple.files.wordpress.com/2015/05/meeple.png?w=300" alt="marker" />
+               <img src={this.props.annotation.user_avatar} alt="marker" />
              </div>;
     }
   });

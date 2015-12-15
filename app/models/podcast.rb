@@ -1,5 +1,5 @@
 class Podcast < ActiveRecord::Base
-  MAX_EPISODES = 5
+  MAX_EPISODES = 15
 
   validates :title, :description, :rss_url, presence: true
 
@@ -12,7 +12,7 @@ class Podcast < ActiveRecord::Base
     through: :follows,
     source: :user
 
-    MULTIPLIER = [1,60,3600,86_400]  # ... 525_600 * 60
+    MULTIPLIER = [1,60,3600,86_400]  # ... 525_600.minutes
 
     def self.secondify(duration)
       t = duration.split(":")
