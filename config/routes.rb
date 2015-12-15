@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resource :session, only: [:show, :create, :destroy]
     resources :users, only: [:create]
     get "/users/availability/:username", to: "users#availability"
+    get "/users/avatars", to: "users#avatars"
     resources :podcasts, only: :create
     resources :annotions, only: :show
     resources :episodes, only: [:index, :show] do

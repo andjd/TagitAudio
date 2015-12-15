@@ -1,0 +1,1 @@
+json.array! @images.map{ |img| image_url "meeples/#{img.split("/").last}"}

@@ -9,6 +9,7 @@
             email: "you@example.ninja",
             password: "password",
             password2: "password",
+            avatar: null,
             passwordOK: true,
             passwordsMatch: true,
             usernameOK: true,
@@ -63,6 +64,10 @@
     this.setState({email: e.currentTarget.value});
   },
 
+  updateAvatar: function (e) {
+      this.setState({avatar: e.currentTarget.src});
+  },
+
 
   createUser: function () {
     if (this.state.passwordOK &&
@@ -93,6 +98,9 @@
                     value={this.state.email}
                     onFocus={this.blankDefaults}
                     onChange={this.handleEmailChange} />
+          </label>
+          <label>Select an avatar
+              <TA.AvatarSelector selected={this.state.avatar} selectAvatar={this.updateAvatar}/>
           </label>
           <label>Password
             <input  type="password"

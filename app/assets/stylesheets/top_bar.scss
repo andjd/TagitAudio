@@ -1,0 +1,100 @@
+$serif: 'Quattrocento', serif;
+$sans: 'Quattrocento Sans', sans-serif;
+$logo: 'Dosis', sans-serif;
+// $accent: 'Simonetta', serif;
+$primary-color: #66b2ff;
+$accent-hint: hsla(8, 77%, 15%, 0.35);
+$accent-color: hsla(8, 77%, 15%, 0.75);
+$accent-opaque: hsla(8, 77%, 15%, 1);
+$accent-loud: #FFC400;
+$accent-loud-dark: #FFA000;
+$img-height: 175px;
+$player-padding: 20px;
+
+.top-bar {
+  margin: 0;
+  padding: 15px 25px;
+  background-color: $primary-color;
+  border-bottom: 3px solid $accent-color;
+
+}
+
+.top-bar {
+  height: 100%;
+  width: auto;
+}
+
+.logo {
+  padding-left: 30px;
+  font-family: $logo;
+  float: left;
+}
+
+.logo > span:first-child {
+  font-weight: 800;
+  font-size: 30px;
+}
+
+.logo > span:last-child {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+nav {
+  background: white;
+  padding-left: 50px;
+  display: block;
+  font-family: $logo;
+  font-size: 24px;
+  border-radius: 0 0 5px 5px;
+}
+.nav-el {
+  float: left;
+  padding: 25px 0;
+}
+
+.nav-el > a:hover {
+  color: $primary-color;
+}
+
+.nav-el > a:active {
+  color: $accent-loud-dark;
+}
+nav .nav-el:not(:last-child):after {
+  content: "//";
+  color: $primary-color;
+  margin: 20px
+
+}
+
+.nav-el.active > a {
+  font-weight: bold;
+}
+
+.avatar-selector {
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  padding: 0;
+}
+
+
+.avatar-selector > li {
+  display: inline-block;
+
+}
+
+.avatar-selector > .selected {
+  border: 1px $accent-opaque solid;
+}
+
+.avatar-thumb {
+  position: relative;
+  top: 15px;
+  height: 40px;
+  width: 40px;
+  margin: -15px 0 0 10px;
+  border: 2px solid $accent-opaque;
+  border-radius: 8px;
+}

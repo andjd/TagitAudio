@@ -26,6 +26,12 @@
         episode_id: stuff.episode_id,
         annotations: stuff.data
       });
+    },
+    recAvatars: function (images) {
+      TA.Dispatcher.dispatch({
+        actionType: TA.Constants.AVATARS_RECD,
+        avatars: images
+      });
     }
   };
 

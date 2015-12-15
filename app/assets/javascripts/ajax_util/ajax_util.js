@@ -15,16 +15,29 @@
           callback && callback();
         }
 
-
       });
     },
 
     fetchEpisodes: function(mode) {
+      var t = setTimeout(TA.Actions.Loading.start, 125);
       $.ajax(("/api/episodes/" + mode), {
         method: "GET",
         success: function (data) {
           TA.Actions.API.recEpisodes(data);
           },
+        complete: function (){
+          clearTimeout(t);
+          TA.Actions.Loading.clear();
+        }
+      });
+    },
+
+    fetchAvatars: function(){
+      $.ajax(("/api/users/avatars"), {
+        method: "GET",
+        success: function (data) {
+          TA.Actions.API.recAvatars(data);
+        },
       });
     },
 
@@ -37,19 +50,24 @@
         },
 
         error: function (data) {
-          alert("Annotation Write Fail: ");
+          // Handle Error
         }
       });
     },
 
     login: function (params, cb) {
+      var t = setTimeout(TA.Actions.Loading.start, 250);
       $.ajax("/api/session", {
-        method: "POST",
-        data: {user: params},
-        success: function (data) {
-          TA.Actions.API.recCurrentUser(data);
-           cb && cb();
-        }
+          method: "POST",
+          data: {user: params},
+          success: function (data) {
+            TA.Actions.API.recCurrentUser(data);
+          },
+          complete: function () {
+            cb && cb();
+            clearTimeout(t)
+            TA.Actions.Loading.clear();
+          }
       });
     },
 

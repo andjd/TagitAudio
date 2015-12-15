@@ -2,7 +2,9 @@
   'use strict';
   var TA = root.TA = root.TA || {};
 
-  var count = 0
+  var count = 0;
+
+  var lastTimeout ;
 
 TA.LoadingModal = React.createClass ({
 	getInitialState: function () {
@@ -16,7 +18,12 @@ TA.LoadingModal = React.createClass ({
 							$(React.findDOMNode(this.refs.med)),
 							$(React.findDOMNode(this.refs.lg))
 						]});
-		setTimeout(this.animate,60)
+		lastTimeout = setTimeout(this.animate,60)
+	},
+
+	componentWillUnmount: function () {
+		count = 0;
+		clearTimeout(lastTimeout);
 	},
 
 	shortenDelay: function () {
@@ -27,7 +34,7 @@ TA.LoadingModal = React.createClass ({
 
 	animate: function () {
 		this.visibilize(count++ % 4);
-		setTimeout(this.animate, this.state.delay);
+		lastTimeout = setTimeout(this.animate, this.state.delay);
 		this.shortenDelay();
 
 	},
@@ -40,7 +47,7 @@ TA.LoadingModal = React.createClass ({
 			this.state.circles && this.state.circles[step].animate({height: "100%", 
 																	width: "100%", 
 																	opacity: 1}, 
-															(this.state.delay * .65), 'easeOutElastic');
+															(this.state.delay * .95), 'easeOutElastic');
 		}
 	},
 

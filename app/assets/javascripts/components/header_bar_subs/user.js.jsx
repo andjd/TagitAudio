@@ -39,6 +39,7 @@
         if (this.state.user) {
           return (<div className="user-status">
                     <span>{"Welcome, " + this.state.user.username}</span>
+                    <img className="avatar-thumb" src={this.state.user.avatar} />
                     <button onClick={TA.AjaxUtil.API.logout}
                       >logout</button>
                   </div>);

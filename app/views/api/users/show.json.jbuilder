@@ -1,2 +1,2 @@
 json.username @user.username
-# avatar
+json.avatar image_path @user.avatar

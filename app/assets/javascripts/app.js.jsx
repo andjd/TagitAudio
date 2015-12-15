@@ -10,12 +10,26 @@
 
   var App = React.createClass({
 
+      getInitialState: function () {
+          return {loading: false};
+      },
 
+      onLoadingChange: function () {
+          this.setState({loading: TA.LoadingStateStore.status()});
+      },
 
+      componentWillMount: function () {
+          TA.LoadingStateStore.addListener(this.onLoadingChange)
+      },
+
+      componentWillUnmount: function () {
+          TA.LoadingStateStore.rmListener(this.onLoadingChange)
+      },
 
     render: function () {
       return (
         <div className="window">
+        {(this.state.loading) ? <TA.LoadingModal /> : ""}
         <TA.HeaderBar />
         <TA.Nav active={this.props.location.pathname.substr(1)} />
 
