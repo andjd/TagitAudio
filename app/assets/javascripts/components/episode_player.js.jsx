@@ -80,8 +80,8 @@
                  ));
 
       return (
-        <article className="player group">
-          <div className="player-top">
+        <article className="player group" style={{backgroundColor: this.props.episode.background_color}}>
+          <div className="player-top" >
             <TA.PlayButton   episode={this.props.episode}
                              playing={currently_playing}
                              options={this.state.options}

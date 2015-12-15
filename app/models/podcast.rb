@@ -1,4 +1,6 @@
 class Podcast < ActiveRecord::Base
+  require "RMagick"
+  include Magick
   MAX_EPISODES = 15
 
   validates :title, :description, :rss_url, presence: true
@@ -38,6 +40,7 @@ class Podcast < ActiveRecord::Base
                     description: feed.itunes_summary,
                     image_url: image
                   )
+    p.background_color = p.get_background_color
     p.save!
 
     entires = [MAX_EPISODES, feed.entries.length].min
@@ -60,5 +63,22 @@ class Podcast < ActiveRecord::Base
     return p
 
   end
+
+
+  def get_background_color
+    i = ImageList.new(self.image_url)
+    small_i = i.scale(1,1)
+    hue = nil
+    small_i.each_pixel {|px| hue = px.to_hsla.first}
+    return "hsl(#{hue}, 100%, 85%)"
+  end
+
+
+
+
+
+
+
+
 
 end

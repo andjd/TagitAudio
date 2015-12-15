@@ -1,5 +1,4 @@
 class Api::PodcastsController < ApplicationController
-
   def create
     feed = params[:podcast][:rss_url]
     if Podcast.find_by_rss_url(feed)
@@ -9,4 +8,5 @@ class Api::PodcastsController < ApplicationController
       redirect_to episodes_url
     end
   end
+
 end

@@ -5,6 +5,7 @@ json.episode_url episode.episode_url
 json.description strip_tags (episode.description.delete("\n").split("</p>").join("\n"))
 json.publication_date episode.publication_date
 json.mime_type episode.mime_type
+json.background_color episode.podcast.background_color
 json.podcast do
   json.id episode.podcast_id
   json.title episode.podcast.title
