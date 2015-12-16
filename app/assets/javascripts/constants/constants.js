@@ -6,6 +6,7 @@
   TA.Constants = {
     PLAYBACK_CHANGE: "playback",
     EPISODES_RECD: "new episodes",
+    EPISODE_UPDATE: "e_update",
     ANNOTATIONS_RECD: "new annotations",
     AVATARS_RECD: "new meeples",
     LOADING: "loading",

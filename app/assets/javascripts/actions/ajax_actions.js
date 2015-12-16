@@ -12,6 +12,14 @@
       });
     },
 
+      updateEpisodes: function (data) {
+        debugger
+      TA.Dispatcher.dispatch ({
+        actionType: TA.Constants.EPISODE_UPDATE,
+        episode: data
+      });
+    },
+
     recCurrentUser: function (user) {
       TA.Dispatcher.dispatch ({
         actionType: TA.Constants.CURRENT_USER_RECD,

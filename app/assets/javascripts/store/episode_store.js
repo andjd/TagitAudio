@@ -8,6 +8,16 @@
     episodes = eps;
   };
 
+  var _insertEpisode = function (new_episode) {
+    debugger
+    var e = episodes.map(function(old_episode){
+      if (old_episode.episode_id === new_episode.episode_id) {
+        return new_episode;
+      } else{ return old_episode;}
+    });
+    episodes = e;
+  };
+
 
   var EPISODES_UPDATE = "new episodes";
   var ANNOTATIONS_UPDATE = "new annotations";
@@ -33,7 +43,11 @@
           _resetEpisodes(payload.episodes);
           TA.EpisodesStore.emit(EPISODES_UPDATE);
           break;
+        case TA.Constants.EPISODE_UPDATE:
 
+          _insertEpisode(payload.episode[0]);
+          TA.EpisodesStore.emit(EPISODES_UPDATE);
+          break;
       }
     })
 

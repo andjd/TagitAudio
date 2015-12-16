@@ -46,7 +46,7 @@
         method: "POST",
         data: {annotation: params},
         success: function (data) {
-          TA.Actions.API.recEpisodes(data);
+          TA.Actions.API.updateEpisodes(data);
         },
 
         error: function (data) {
