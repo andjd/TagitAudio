@@ -166,6 +166,79 @@ $player-padding: 20px;
 
 }
 
+[class*="icon-mini"] {
+  display: inline-block;
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  border: none;
+  margin-left: -30px;
+  background-color: transparent;
+  background-image: image-url("Sprites-3.png");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 100px 125px;
+}
+
+.icon-mini-follow {
+  background-position:  -25px  -75px;
+}
+.icon-mini-follow.awesome{
+  background-position:  -50px -75px;
+}
+.icon-mini-follow:hover {
+  background-position:  -0px -75px;
+}
+.icon-mini-follow:active {
+  background-position:  -75px -75px;
+}
+.icon-mini-share {
+  background-position:  -25px -100px;
+}
+.icon-mini-share.awesome{
+  background-position:  -50px -100px;
+}
+.icon-mini-share:hover {
+  background-position:  -0px -100px;
+}
+.icon-mini-share:active {
+  background-position:  -75px -100px;
+}
+.icon-mini-star {
+  background-position:  -25px -50px;
+}
+.icon-mini-star.awesome{
+  background-position: -50px -50px;
+}
+.icon-mini-star:hover {
+  background-position:  -0px -50px;
+}
+.icon-mini-star:active {
+  background-position:  -75px -50px;
+}
+.icon-mini-like {
+  background-position: -25px -25px;
+}
+.icon-mini-like.awesome{
+  background-position:  -50px -25px;
+}
+.icon-mini-like:hover {
+  background-position:  -0px -25px;
+}
+.icon-mini-like:active {
+  background-position:  -75px  -25px;
+}
+.icon-mini-download {
+  background-position:  0 -25px 0;
+}
+.icon-mini-download.awesome{
+  background-position:  -50px 0;
+}
+.icon-mini-download:active {
+  background-position:  -75px 0;
+}
+
+
 .player {
   position: relative;
   background: white;

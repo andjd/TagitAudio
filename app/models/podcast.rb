@@ -10,9 +10,12 @@ class Podcast < ActiveRecord::Base
 
   has_many :episodes, dependent: :destroy
 
+  has_many :follows
+
   has_many :followers,
     through: :follows,
     source: :user
+
 
     MULTIPLIER = [1,60,3600,86_400]  # ... 525_600.minutes
 

@@ -34,12 +34,8 @@ class Api::EpisodesController < ApplicationController
   end
 
   def following
-    @eps = Episode.includes(:podcast, :annotations)
-        .join(:podcast).join(:user)
-        .order(:publication_date).reverse_order.first(7)
-    # insert stuff here
-    # .order(:publication_date).reverse_order.first(7)
-    # all episodes of follwed podcasts, order by publication date
+    @user = User.find(params[:user])
+    @eps = @user.episodes.includes(:podcast, :annotations).order(:publication_date).reverse_order.first(7)
     render :index
   end
 

@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     resources :search, only: :index
     resource :session, only: [:show, :create, :destroy]
-    resources :users, only: [:create]
+    resources :users, only: [:create] do
+      resource :likes, only: [:create, :destroy]
+      resource :follows, only: [:create, :destroy]
+    end
     get "/users/availability/:username", to: "users#availability"
     get "/users/avatars", to: "users#avatars"
     resources :podcasts, only: :create

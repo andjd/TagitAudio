@@ -19,6 +19,14 @@
       if ($.isEmptyObject(user)) {return null;}
       else {return $.extend({}, user);}
     },
+    following: function (podcast_id) {
+      return user && user.follows && user.follows.indexOf(podcast_id) !== -1
+    },
+    like: function (episode_id) {
+      return user && user.likes && user.likes.indexOf(episode_id) !== -1
+    },
+
+
 
     addListener: function(cb) {
       this.on(SESSION_CHANGE, cb);

@@ -2,6 +2,11 @@ class User < ActiveRecord::Base
 
   attr_reader :password
 
+  has_many :likes
+  has_many :episodes, through: :likes, source: :episode
+  has_many :follows
+  has_many :podcasts, through: :follows, source: :podcast
+
   validates :username, :hashword, :token, presence: true
   validates :username, :token, uniqueness: true
   validates :uid, uniqueness: {:scope => :provider, :allow_nil => true}

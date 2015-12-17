@@ -22,6 +22,7 @@
       var t = setTimeout(TA.Actions.Loading.start, 125);
       $.ajax(("/api/episodes/" + mode), {
         method: "GET",
+        data: {user: TA.CurrentUserStore.user() && TA.CurrentUserStore.user().id},
         success: function (data) {
           TA.Actions.API.recEpisodes(data);
           },
@@ -53,6 +54,26 @@
           // Handle Error
         }
       });
+    },
+
+    toggleLike: function(mode, params) {
+      $.ajax(("/api/users/" + TA.CurrentUserStore.user().id + "/likes"), {
+          method: (mode) ? "DELETE" : "POST",
+          data: params,
+          success: function(data) {
+            TA.Actions.API.recCurrentUser(data);
+          }
+      } );
+    },
+
+    toggleFavorite: function(mode, params) {
+      $.ajax(("/api/users/" + TA.CurrentUserStore.user().id + "/follows"), {
+          method: (mode) ? "DELETE" : "POST",
+          data: params,
+          success: function(data) {
+            TA.Actions.API.recCurrentUser(data);
+          }
+      } );
     },
 
     login: function (params, cb) {
