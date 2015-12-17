@@ -6,6 +6,8 @@
 
   var Router = ReactRouter.Router;
   var Route = ReactRouter.Route;
+  var Redirect = ReactRouter.Redirect;
+  var IndexRoute= ReactRouter.IndexRoute;
 
 
   var App = React.createClass({
@@ -44,14 +46,15 @@
     React.render(
       (
         <Router>
-          <Route path="/" component={App}>
+          <Route component={App}>
+            <Redirect from="/" to="/welcome" />
             <Route path={"/" + TA.Constants.NAV.NEW} component={TA.Pages.Newest} />
             <Route path={"/" + TA.Constants.NAV.POPULAR} component={TA.Pages.Trending} />
             <Route path={"/" + TA.Constants.NAV.FOLLOWING} />
             <Route path={"/" + TA.Constants.NAV.SEARCH} component={TA.Pages.Search}/>
             <Route path="/test" component={TA.LoadingModal} />
           </Route>
-          <Route path="/welcome" component={TA.Splash} />
+          <Route path="/welcome" component={TA.Welcome} />
         </Router>
       ),
       document.getElementById("react")

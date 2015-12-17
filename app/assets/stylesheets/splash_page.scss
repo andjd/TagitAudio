@@ -1,0 +1,79 @@
+$serif: 'Quattrocento', serif;
+$sans: 'Quattrocento Sans', sans-serif;
+$logo: 'Dosis', sans-serif;
+// $accent: 'Simonetta', serif;
+$primary-color: #66b2ff;
+$accent-hint: hsla(8, 77%, 15%, 0.35);
+$accent-color: hsla(8, 77%, 15%, 0.75);
+$accent-opaque: hsla(8, 77%, 15%, 1);
+$accent-loud: #FFC400;
+$accent-loud-dark: #FFA000;
+
+#splash-video {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: 100%;
+    z-index: -100;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    background: image_url "video_freeze_frame.png" no-repeat;
+    background-size: cover; 
+    overflow: hidden;
+    opacity: .5;
+}
+
+.splash > header {
+background: transparent;
+border-bottom: none;
+	
+}
+
+.splash-points {
+	padding: 0 3%;
+	padding-top: 150px;
+}
+
+.splash-el {
+	width: 25%;
+	margin: 4%;
+	float: left;
+}
+
+.splash-el > img {
+	box-sizing: border-box;
+	padding: 0 10%;
+	width: 100%;
+	height: auto;
+}
+
+.splash-el > h2, .splash-el > h3 {
+	text-align: center;
+}
+
+.splash-el > h2 {
+	font-family: $serif;
+	font-size: 36px;
+	font-weight: bold;
+}
+
+.splash-el > h3  {
+	font-family: $sans;
+	font-size: 18px;
+	font-weight: normal;
+
+}
+
+.splash  .button {
+	text-align: center;
+	font-size: 30px;
+	display: block;
+	margin: auto;
+	width: 140px;
+
+}
+
+

@@ -1,0 +1,49 @@
+(function(root) {
+  'use strict';
+  var TA = root.TA = root.TA || {};
+  var Link = ReactRouter.Link;
+
+  TA.Welcome = React.createClass({
+  	render: function () {
+  		return (<div className="splash">
+  			<TA.HeaderBar />
+  			<video id="splash-video" 
+  					src="<%= image_path 'tagit_background_video.mp4' %>" 
+  					autoPlay 
+  					poster="<%= image_path 'video_freeze_frame' %>" />
+  			<div className="splash-points group">
+	  			<TA.SplashSub text="Listen"
+			            subtext="to podcasts from around the web"
+			            image="<%= image_url "hear.png" %>"
+			            id="1" />
+			      <TA.SplashSub text="Annotate"
+			            subtext="easily while you listen"
+			            image="<%= image_url "add.png" %>"
+			            id="2" />
+			      <TA.SplashSub text="Search"
+			            subtext="find the precise topic you want"
+			            image="<%= image_url "find.png" %>"
+			            id="3" />
+			</div>
+			<div><Link to={"/" + TA.Constants.NAV.NEW} className="button">Explore</Link></div>
+  		</div>)
+  	}
+
+  });
+
+    TA.SplashSub = React.createClass({
+    render: function (){
+      return (
+        <div className={"splash-el"}>
+          <img src={this.props.image} alt="" />
+          <h2>{this.props.text}</h2>
+          <h3>{this.props.subtext}</h3>
+        </div>
+      );
+    }
+
+
+  });
+
+
+}(this));

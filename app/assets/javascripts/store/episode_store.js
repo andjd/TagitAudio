@@ -9,7 +9,6 @@
   };
 
   var _insertEpisode = function (new_episode) {
-    debugger
     var e = episodes.map(function(old_episode){
       if (old_episode.episode_id === new_episode.episode_id) {
         return new_episode;
