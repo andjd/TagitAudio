@@ -10,7 +10,7 @@ $accent-loud: #FFC400;
 $accent-loud-dark: #FFA000;
 
 #splash-video {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 50%;
     min-width: 100%;
@@ -24,6 +24,10 @@ $accent-loud-dark: #FFA000;
     background-size: cover; 
     overflow: hidden;
     opacity: .5;
+}
+
+.splash {
+	overflow: hidden
 }
 
 .splash > header {
