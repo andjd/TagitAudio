@@ -111,6 +111,13 @@
       });
     },
 
+    addPodcast: function (url) {
+      $.ajax("/api/podcasts", {
+        method: "POST",
+        data: {podcast: {rss_url: "http://feeds.feedburner.com/TheGistWithMikePesca"}}
+      });
+    },
+
     logout: function () {
       $.ajax("/api/session", {
         method: "DELETE",

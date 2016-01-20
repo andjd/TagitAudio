@@ -4,8 +4,9 @@ class Api::PodcastsController < ApplicationController
     if Podcast.find_by_rss_url(feed)
       render text: "podcast is already in system"
     else
-      p = Podcast.digest_rss_feed(feed)
-      redirect_to episodes_url
+    	# Podcast.digest_rss_feed(feed)
+      RssProcessor.perform_async(feed)
+      # redirect_to episodes_url
     end
   end
 
