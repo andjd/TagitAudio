@@ -2,6 +2,10 @@ source 'https://rubygems.org'
 ruby '2.2.1'
 
 
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
+
 gem 'react-rails', '~> 1.3.0'
 gem 'flux-rails-assets', '~> 2.1.0'
 gem 'feedjira'

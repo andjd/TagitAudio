@@ -1,5 +1,5 @@
 class Podcast < ActiveRecord::Base
-  require "RMagick"
+  require "rmagick"
   include Magick
   require 'set'
   MAX_EPISODES = 15
@@ -35,6 +35,8 @@ class Podcast < ActiveRecord::Base
 
 
   def self.digest_rss_feed(rss_url)
+    return nil if Podcast.find_by_rss_url(rss_url)
+    
     feed = Feedjira::Feed.fetch_and_parse(rss_url)
 
     image = feed.itunes_image ? feed.itunes_image : nil
