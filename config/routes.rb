@@ -1,5 +1,7 @@
+require 'sidekiq/web'
 Rails.application.routes.draw do
   root to: 'static_pages#root'
+  mount Sidekiq::Web, at: "/sidekiq"
   namespace :api, defaults: {format: :json} do
     resources :search, only: :index
     resource :session, only: [:show, :create, :destroy]
