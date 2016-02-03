@@ -18,6 +18,7 @@ class Api::EpisodesController < ApplicationController
             FROM episodes AS e
             JOIN annotations AS a
               ON e.id = a.episode_id
+            WHERE DATE_PART('day', current_timestamp - a.created_at) < 29
             GROUP BY e.id
         ) AS score
         ON episodes.id = score.id
