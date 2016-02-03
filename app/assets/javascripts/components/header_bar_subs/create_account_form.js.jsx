@@ -75,14 +75,32 @@
      this.state.passwordsMatch &&
      this.state.username !== "username") {
 
-        TA.AjaxUtil.API.createUser(this.state, this.props.voidModal);
+        TA.AjaxUtil.API.createUser(this.state, this.props.voidModal, this.tryAgain());
         }
+
+  },
+
+  tryAgain: function() {
+    this.setState($.extend({}, this.getInitialState, {error: true}));
+  },
+
+  enterOrEscape: function(e) {
+    switch(e.charCode) {
+    case 13:
+      this.createUser();
+      e.preventDefault();
+      e.stopPropagation();
+      break;
+    case 27:
+      this.props.voidModal();
+    }
 
   },
 
     render: function () {
       return(
-        <form onSubmit={this.createUser}>
+        <form onSubmit={this.createUser} onKeyPress={this.enterOrEscape}>
+          {(this.state.error) ? <strong> Something went wrong.  :-(  Please try again. </strong> : "" }
           <label>Username
             <input  type="text"
                     value={this.state.username}
@@ -121,8 +139,9 @@
 
           <div className="login-buttons">
             <button onClick={this.props.voidModal} className="button-cancel">Cancel</button>
-            <button disabled={
-                (this.state.passwordOK &&
+            <button  type="submit" disabled={
+                (this.state.password !== "" &&
+                 this.state.passwordOK &&
                  this.state.usernameOK &&
                  this.state.passwordsMatch &&
                  this.state.username !== "username") ? false : true}
