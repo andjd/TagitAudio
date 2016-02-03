@@ -24,13 +24,32 @@
   loginUser: function () {
     TA.AjaxUtil.API.login({username: this.state.username,
                            password: this.state.password},
-                          this.props.voidModal);
+                          this.props.voidModal,
+                          this.tryAgain);
+
+  },
+
+  tryAgain: function() {
+    this.setState($.extend({}, this.getInitialState, {error: true}));
+  },
+
+  enterOrEscape: function(e) {
+    switch(e.charCode) {
+    case 13:
+      e.preventDefault();
+      e.stopPropagation();
+      this.loginUser();
+      break;
+    case 27:
+      this.props.voidModal();
+    }
 
   },
 
     render: function () {
       return(
-        <form onSubmit={this.loginUser}>
+        <form onSubmit={this.loginUser} onKeyPress={this.enterOrEscape}>
+        {(this.state.error) ? <strong> Something went wrong.  :-(  Please try again. </strong> : ""}
           <label>Username
             <input  type="text"
                     value={this.state.username}

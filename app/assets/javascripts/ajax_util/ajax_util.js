@@ -76,30 +76,34 @@
       } );
     },
 
-    login: function (params, cb) {
+    login: function (params, successCB, errorCB ){
       var t = setTimeout(TA.Actions.Loading.start, 250);
       $.ajax("/api/session", {
           method: "POST",
           data: {user: params},
           success: function (data) {
             TA.Actions.API.recCurrentUser(data);
+            successCB && successCB()
+          },
+          error: function () {
+            errorCB && errorCB();
           },
           complete: function () {
-            cb && cb();
-            clearTimeout(t)
+            clearTimeout(t);
             TA.Actions.Loading.clear();
           }
       });
     },
 
-    createUser: function (params, cb) {
+    createUser: function (params, successCB, errorCB) {
       $.ajax("/api/users", {
         method: "POST",
         data: {user: params},
         success: function (data) {
           TA.Actions.API.recCurrentUser(data);
-           cb && cb();
-        }
+           successCB && successCB();
+        },
+        error: errorCB
       });
     },
 
