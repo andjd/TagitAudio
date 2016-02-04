@@ -9,6 +9,7 @@ class Episode < ActiveRecord::Base
   belongs_to :podcast
 
   has_many :annotations, dependent: :destroy
+  has_many :annotators, through: :annotations, source: :annotator
 
   def annotations_in_order
     self.annotations.order(:time)

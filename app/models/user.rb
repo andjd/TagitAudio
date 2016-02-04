@@ -3,9 +3,11 @@ class User < ActiveRecord::Base
   attr_reader :password
 
   has_many :likes
-  has_many :episodes, through: :likes, source: :episode
+  has_many :liked_episodes, through: :likes, source: :episode
   has_many :follows
-  has_many :podcasts, through: :follows, source: :podcast
+  has_many :followed_podcasts, through: :follows, source: :podcast
+  has_many :followed_episodes, through: :podcasts, source: :episodes
+
 
   validates :username, :hashword, :token, presence: true
   validates :username, :token, uniqueness: true

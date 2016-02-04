@@ -18,6 +18,6 @@ sorted_annotations = episode.annotations.sort
     json.body ann.body
     json.time ann.time
     json.user_id ann.user_id
-    json.user_avatar image_path ann.user.avatar
+    json.user_avatar image_path ann.annotator.avatar
   end
 end
