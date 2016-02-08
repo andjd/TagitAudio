@@ -1,9 +1,13 @@
 source 'https://rubygems.org'
 
+ruby '2.2.0'
+
 gem 'react-rails', '~> 1.3.0'
 gem 'flux-rails-assets', '~> 2.1.0'
 gem 'feedjira'
 gem "paperclip", "~> 4.3"
+
+gem 'schema_plus_views'
 
 gem 'pg_search'
 gem 'kaminari'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151217202814) do
+ActiveRecord::Schema.define(version: 20160208180356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 20151217202814) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
   add_index "annotations", ["episode_id"], name: "index_annotations_on_episode_id", using: :btree
   add_index "annotations", ["user_id"], name: "index_annotations_on_user_id", using: :btree
 
@@ -41,7 +40,6 @@ ActiveRecord::Schema.define(version: 20151217202814) do
     t.datetime "updated_at",       null: false
     t.string   "mime_type",        null: false
   end
-
   add_index "episodes", ["description"], name: "index_episodes_on_description", using: :btree
   add_index "episodes", ["feedjira_id"], name: "index_episodes_on_feedjira_id", using: :btree
   add_index "episodes", ["podcast_id"], name: "index_episodes_on_podcast_id", using: :btree
@@ -54,7 +52,6 @@ ActiveRecord::Schema.define(version: 20151217202814) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
   add_index "follows", ["podcast_id"], name: "index_follows_on_podcast_id", using: :btree
   add_index "follows", ["user_id"], name: "index_follows_on_user_id", using: :btree
 
@@ -64,7 +61,6 @@ ActiveRecord::Schema.define(version: 20151217202814) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
   add_index "likes", ["episode_id"], name: "index_likes_on_episode_id", using: :btree
   add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
 
@@ -75,7 +71,6 @@ ActiveRecord::Schema.define(version: 20151217202814) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
-
   add_index "pg_search_documents", ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id", using: :btree
 
   create_table "podcasts", force: :cascade do |t|
@@ -87,9 +82,17 @@ ActiveRecord::Schema.define(version: 20151217202814) do
     t.datetime "updated_at",       null: false
     t.string   "background_color"
   end
-
   add_index "podcasts", ["description"], name: "index_podcasts_on_description", using: :btree
   add_index "podcasts", ["title"], name: "index_podcasts_on_title", using: :btree
+
+  create_view "trending_scores", <<-'END_VIEW_TRENDING_SCORES', :force => true
+SELECT e.id AS episode_id,
+    COALESCE(sum(((1)::double precision / ((1)::double precision + (exp((((date_part('day'::text, (now() - (a.created_at)::timestamp with time zone)) * (24)::double precision) + date_part('hour'::text, (now() - (a.created_at)::timestamp with time zone))) - (40)::double precision)) / (8)::double precision)))), (0)::double precision) AS score
+   FROM (episodes e
+     JOIN annotations a ON ((e.id = a.episode_id)))
+  WHERE (date_part('day'::text, (now() - (a.created_at)::timestamp with time zone)) < (29)::double precision)
+  GROUP BY e.id
+  END_VIEW_TRENDING_SCORES
 
   create_table "users", force: :cascade do |t|
     t.string   "username",            null: false
@@ -106,7 +109,6 @@ ActiveRecord::Schema.define(version: 20151217202814) do
     t.string   "uid"
     t.string   "avatar"
   end
-
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["hashword"], name: "index_users_on_hashword", using: :btree
   add_index "users", ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true, using: :btree
