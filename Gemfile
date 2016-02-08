@@ -5,6 +5,8 @@ gem 'flux-rails-assets', '~> 2.1.0'
 gem 'feedjira'
 gem "paperclip", "~> 4.3"
 
+gem 'schema_plus_views'
+
 gem 'pg_search'
 gem 'kaminari'
 gem 'rmagick'
