@@ -2,6 +2,7 @@
   'use strict';
   var TA = root.TA = root.TA || {};
 
+  mixins: 'history'
 
   var Link = ReactRouter.Link;
 
@@ -15,6 +16,12 @@
       this.setState({active: newProps.active});
     },
 
+    handleMineClick: function(e) {
+      if (!TA.LoginUtil.userOrLogin()) {
+         e.preventDefault();
+       }
+    },
+
     render: function () {
       return (
         <nav className="w">
@@ -26,10 +33,10 @@
               <Link to={"/" + TA.Constants.NAV.POPULAR}>Trending</Link>
             </li>
             <li className={(this.state.active === TA.Constants.NAV.FOLLOWING) ? "nav-el active" : "nav-el"}>
-                <Link to={"/" + TA.Constants.NAV.FOLLOWING}>My Podcasts</Link>
+                <a onClick={this.handleMineClick} href={"#" + TA.Constants.NAV.FOLLOWING}>My Podcasts</a>
             </li>
             <li className={(this.state.active === TA.Constants.NAV.SEARCH) ? "nav-el active" : "nav-el"}>
-              <Link to={"/" + TA.Constants.NAV.SEARCH}>Search</Link>
+                <Link to={"/" + TA.Constants.NAV.SEARCH}>Search</Link>
             </li>
           </ol>
         </nav>

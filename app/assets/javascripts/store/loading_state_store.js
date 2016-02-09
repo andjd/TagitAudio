@@ -4,7 +4,7 @@
 
   	var loading = false;
 
-  	var LOADING_UPDATE = "load?" 
+  	var LOADING_UPDATE = "load?";
 
 	 TA.LoadingStateStore = $.extend({}, EventEmitter.prototype, {
 	 	status: function () {

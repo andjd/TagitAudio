@@ -32,11 +32,10 @@
   },
 
     render: function () {
-      debugger
       return (
         <header>
           <h3>
-            <a onClick={this.toggleFavorite} className={"icon-mini-follow" + ((TA.CurrentUserStore.following(this.props.episode.podcast.id)) ? " awesome": "")} /> 
+            <a onClick={this.toggleFavorite} className={"icon-mini-follow" + ((TA.CurrentUserStore.following(this.props.episode.podcast.id)) ? " awesome": "")} />
             {this.props.episode.podcast.title}
           </h3>
           <h4>

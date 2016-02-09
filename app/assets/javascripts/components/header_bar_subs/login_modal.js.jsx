@@ -28,7 +28,7 @@
             </header>
 
             {(this.props.activeModal === "login") ?
-            <TA.LoginForm voidModal={this.props.voidModal} /> :
+            <TA.LoginForm voidModal={this.props.voidModal} message={this.props.message}/> :
             <TA.CreateAccountForm voidModal={this.props.voidModal} />}
 
 

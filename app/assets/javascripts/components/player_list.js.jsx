@@ -3,19 +3,22 @@
   var TA = root.TA = root.TA || {};
   TA.Pages = TA.Pages || {};
 
-  TA.Pages.Trending = React.createClass ({
+  TA.Pages.PlayerList = React.createClass ({
 
     getInitialState: function (){
       return {episodes: []};
     },
 
     componentDidMount: function () {
-      TA.AjaxUtil.API.fetchEpisodes(TA.Constants.NAV.POPULAR);
+      TA.AjaxUtil.API.fetchEpisodes(this.props.params.view);
       TA.EpisodesStore.addListener(this.newEpisodes);
     },
 
     componentWillUnmount: function () {
       TA.EpisodesStore.rmListener(this.newEpisodes);
+    },
+    componentWillReceiveProps: function(newProps) {
+      TA.AjaxUtil.API.fetchEpisodes(newProps.params.view);
     },
 
     newEpisodes: function () {

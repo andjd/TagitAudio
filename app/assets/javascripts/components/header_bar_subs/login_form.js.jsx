@@ -31,6 +31,7 @@
     render: function () {
       return(
         <form onSubmit={this.loginUser}>
+        <strong>{this.props.message}</strong>
           <label>Username
             <input  type="text"
                     value={this.state.username}

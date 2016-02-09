@@ -21,18 +21,18 @@
       },
 
       componentWillMount: function () {
-          TA.LoadingStateStore.addListener(this.onLoadingChange)
+          TA.LoadingStateStore.addListener(this.onLoadingChange);
       },
 
       componentWillUnmount: function () {
-          TA.LoadingStateStore.rmListener(this.onLoadingChange)
+          TA.LoadingStateStore.rmListener(this.onLoadingChange);
       },
 
     render: function () {
       return (
         <div className="window">
         {(this.state.loading) ? <TA.LoadingModal /> : ""}
-        <TA.HeaderBar />
+        <TA.HeaderBar loginFirst ={(this.props.location.pathname.substr(1)==="login") ? login : null}/>
         <TA.Nav active={this.props.location.pathname.substr(1)} />
 
           {this.props.children}
@@ -48,11 +48,9 @@
         <Router>
           <Route component={App}>
             <Redirect from="/" to="/welcome" />
-            <Route path={"/" + TA.Constants.NAV.NEW} component={TA.Pages.Newest} />
-            <Route path={"/" + TA.Constants.NAV.POPULAR} component={TA.Pages.Trending} />
-            <Route path={"/" + TA.Constants.NAV.FOLLOWING} component={TA.Pages.Mine} />
-            <Route path={"/" + TA.Constants.NAV.SEARCH} component={TA.Pages.Search}/>
-            <Route path="/test" component={TA.LoadingModal} />
+            <Route path={'/search'} component={TA.Pages.Search} />
+            <Route path={"/:view"} component={TA.Pages.PlayerList} />
+
           </Route>
           <Route path="/welcome" component={TA.Welcome} />
         </Router>

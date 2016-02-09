@@ -13,7 +13,6 @@
     },
 
       updateEpisodes: function (data) {
-        debugger
       TA.Dispatcher.dispatch ({
         actionType: TA.Constants.EPISODE_UPDATE,
         episode: data

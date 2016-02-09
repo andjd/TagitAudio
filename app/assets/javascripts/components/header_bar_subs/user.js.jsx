@@ -1,6 +1,7 @@
 (function(root) {
   'use strict';
   var TA = root.TA = root.TA || {};
+  var dispatcherID
 
   TA.User = React.createClass({
     getInitialState: function () {
@@ -11,19 +12,16 @@
       this.setState({user: TA.CurrentUserStore.user()});
     },
 
-    componentWillMount: function () {
-      TA.CurrentUserStore.addListener(this.updateUser);
-    },
 
     componentWillUnmount: function () {
       TA.CurrentUserStore.rmListener(this.updateUser);
     },
 
-    activateModalLogin: function (state) {
-      this.setState({modal: "login"});
+    activateModalLogin: function (message) {
+      this.setState({modal: "login", message: message});
     },
 
-    activateModalCreate: function (state) {
+    activateModalCreate: function () {
       this.setState({modal: "create"});
     },
 
@@ -31,11 +29,18 @@
       this.setState({modal: null});
     },
 
-
-
-
+    componentWillMount: function () {
+      var me = this
+      TA.CurrentUserStore.addListener(this.updateUser);
+      dispatcherID = TA.Dispatcher.register(function (payload) {
+        if (payload.actionType === TA.Constants.REQUIRE_LOGIN) {
+          me.activateModalLogin(payload['message']);
+        }
+      })
+    },
 
     render: function () {
+        console.log(this.state.message)
         if (this.state.user) {
           return (<div className="user-status">
                     <span>{"Welcome, " + this.state.user.username}</span>
@@ -56,6 +61,7 @@
                     <TA.LoginModal
                         activeModal={this.state.modal}
                         voidModal={this.voidModal}
+                        message={this.state.message}
                         activateModalLogin={this.activateModalLogin}
                         activateModalCreate={this.activateModalCreate} />
                   </div>);

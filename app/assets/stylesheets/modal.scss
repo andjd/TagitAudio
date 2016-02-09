@@ -43,9 +43,11 @@
 
 [class*="loading-circle-"] {
 	border-radius: 50%;
-	background-color: hsla(8, 77%, 15%, 0.45);
+	border: 12px solid hsla(8%, 77%, 15%, 0.45);
+	background-color: transparent;
 	width: 0;
 	height: 0;
 	opacity: 0;
-	transform: translate(-50%, -50%)
+	transform: translate(-50%, -50%);
+	z-index: -1;
 }
