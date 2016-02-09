@@ -26,17 +26,18 @@ Features:
 - [X] Users can create accounts and log in.  
   - Passwords are protected using BCrypt.  
   - Validations on performed client side using javascript and AJAX
+- [X] Users can follow podcasts and like specific episodes of podcasts
+  - Liked episodes show up in "My Podcasts" view
 
 Features to Add
 - [ ] clicking on a episode or podcast title will take user to episode/podcast views
 - [ ] The episode view shows stats such as number of plays and number of likes.
-- [ ] Users can follow podcasts and like specific episodes of podcasts
 - [ ] Users will have a personalized "my podcasts" view
 - [ ] Users can add keywords to tags by typing "#"
 - [ ] Clicking on a keyword will perform a search for that keyword
 - [ ] Search will use existing keywords for autocompete suggestions
-- [ ] Allow users to add a podcast to the service
-- [ ] Add loading animation
+- [ ] *in progress* Allow users to add a podcast to the service
+- [X] Add loading animation
 - [ ] Add hosts and guests relation and give their tags special styling
 - [ ] Add moderator/reputation framework to weed out spam/low-value tags (similar to StackOverflow/Reddit)
 

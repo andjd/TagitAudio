@@ -11,6 +11,8 @@ class Episode < ActiveRecord::Base
   has_many :annotations, dependent: :destroy
   has_many :annotators, through: :annotations, source: :annotator
 
+  has_one :trending_score
+
   def annotations_in_order
     self.annotations.order(:time)
   end
