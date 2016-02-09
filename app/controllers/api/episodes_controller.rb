@@ -5,7 +5,10 @@ class Api::EpisodesController < ApplicationController
   end
 
   def trending
-    @eps = Episode.joins(:trending_score).includes(:podcast, annotations: :annotator).order("trending_scores.score DESC, episodes.publication_date DESC").first(7)
+    @eps = Episode.joins(:trending_score)
+      .includes(:podcast, annotations: :annotator)
+      .order("trending_scores.score DESC, episodes.publication_date DESC")
+      .first(7)
     render :index
   end
 
