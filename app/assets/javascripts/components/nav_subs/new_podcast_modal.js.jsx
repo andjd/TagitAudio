@@ -36,7 +36,7 @@
                onClick={this.props.voidModal} />
           <div className="modal-content" >
             <header className="top-bar modal-bar">
-              <h1 className="logo">
+              <h1 className="logo group">
                 <span>Tagit</span>
                 <span>AUDIO</span>
               </h1>

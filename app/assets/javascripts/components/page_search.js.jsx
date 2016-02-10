@@ -8,7 +8,7 @@
      mixins: [ReactRouter.History],
 
     getInitialState: function (){
-      return {episodes: [], search: "Search", intervalID: null, page: 1};
+      return {episodes: [], search: "Try searching for 'Batman'", intervalID: null, page: 1};
     },
 
     componentDidMount: function () {

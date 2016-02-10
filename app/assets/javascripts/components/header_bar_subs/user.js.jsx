@@ -40,7 +40,6 @@
     },
 
     render: function () {
-        console.log(this.state.message)
         if (this.state.user) {
           return (<div className="user-status">
                     <span>{"Welcome, " + this.state.user.username}</span>
