@@ -50,7 +50,6 @@
             <Redirect from="/" to="/welcome" />
             <Route path={'/search'} component={TA.Pages.Search} />
             <Route path={"/:view"} component={TA.Pages.PlayerList} />
-
           </Route>
           <Route path="/welcome" component={TA.Welcome} />
         </Router>

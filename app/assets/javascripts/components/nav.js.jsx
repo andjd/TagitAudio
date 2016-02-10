@@ -39,6 +39,7 @@
                 <Link to={"/" + TA.Constants.NAV.SEARCH}>Search</Link>
             </li>
           </ol>
+          <TA.AddPodcast  />
         </nav>
       );
     }
