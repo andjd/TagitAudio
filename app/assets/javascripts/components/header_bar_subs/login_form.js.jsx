@@ -25,7 +25,7 @@
   },
 
   tryAgain: function() {
-    this.setState($.extend({}, this.getInitialState, {error: true}));
+    this.setState({error: true});
   },
 
   enterOrEscape: function(e) {
@@ -60,7 +60,7 @@
 
           <div className="login-buttons">
             <button onClick={this.props.voidModal} className="button-cancel" >Cancel</button>
-            <button>Log In</button>
+            <button type="submit">Log In</button>
           </div>
         </form>
       );

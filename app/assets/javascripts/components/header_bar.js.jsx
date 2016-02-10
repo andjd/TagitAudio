@@ -11,7 +11,6 @@
               <span>Tagit</span>
               <span>AUDIO</span>
            </h1>
-           <TA.AddPodcast  />
            <TA.User />
            </div>
         </header>
