@@ -115,10 +115,13 @@
       });
     },
 
-    addPodcast: function (url) {
+    addPodcast: function (url, successCB, errorCB) {
+      debugger
       $.ajax("/api/podcasts", {
         method: "POST",
-        data: {podcast: {rss_url: "http://feeds.feedburner.com/TheGistWithMikePesca"}}
+        data: {podcast: {rss_url: url}},
+        success: successCB,
+        error: errorCB
       });
     },
 
