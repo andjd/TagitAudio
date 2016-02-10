@@ -4,7 +4,6 @@
 
   TA.PodcastInfo = React.createClass ({
       render: function() {
-        debugger
         return (
           <div className="w episode-info">
             <h1>{this.props.podcast.title}</h1>
