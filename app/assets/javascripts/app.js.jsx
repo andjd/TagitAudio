@@ -46,12 +46,13 @@
     React.render(
       (
         <Router>
+          <Route path="/welcome" component={TA.Welcome} />
           <Route component={App}>
             <Redirect from="/" to="/welcome" />
             <Route path={'/search'} component={TA.Pages.Search} />
+            <Route path={'/podcasts/*'} component={TA.Pages.Podcast} />
             <Route path={"/:view"} component={TA.Pages.PlayerList} />
           </Route>
-          <Route path="/welcome" component={TA.Welcome} />
         </Router>
       ),
       document.getElementById("react")

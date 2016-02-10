@@ -18,6 +18,13 @@
         episode: data
       });
     },
+    
+    recPodcast: function (data) {
+      TA.Dispatcher.dispatch ({
+        actionType: TA.Constants.PODCAST_RECD,
+        podcast: data
+      });
+    },
 
     recCurrentUser: function (user) {
       TA.Dispatcher.dispatch ({

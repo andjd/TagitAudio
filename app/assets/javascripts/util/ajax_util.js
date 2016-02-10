@@ -18,8 +18,29 @@
       });
     },
 
+    fetchPodcastAndEpisodes: function(id) {
+      var t = setTimeout(TA.Actions.Loading.start, 200);
+      $.ajax(("api/podcasts/" + String(id)), {
+        method: "GET",
+        success: function (data) {
+          TA.Actions.API.recPodcast(data);
+          },
+      });
+
+      $.ajax(("/api/podcasts/" + String(id) + "/episodes"), {
+        method: "GET",
+        success: function (data) {
+          TA.Actions.API.recEpisodes(data);
+          },
+        complete: function (){
+          clearTimeout(t);
+          TA.Actions.Loading.clear();
+        }
+      });
+    },
+
     fetchEpisodes: function(mode) {
-      var t = setTimeout(TA.Actions.Loading.start, 125);
+      var t = setTimeout(TA.Actions.Loading.start, 200);
       $.ajax(("/api/episodes/" + mode), {
         method: "GET",
         data: {user: TA.CurrentUserStore.user() && TA.CurrentUserStore.user().id},
@@ -116,7 +137,6 @@
     },
 
     addPodcast: function (url, successCB, errorCB) {
-      debugger
       $.ajax("/api/podcasts", {
         method: "POST",
         data: {podcast: {rss_url: url}},

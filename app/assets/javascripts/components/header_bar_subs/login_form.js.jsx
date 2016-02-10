@@ -43,13 +43,9 @@
 
     render: function () {
       return(
-<<<<<<< 328ba2b45267a244188a639f6712d8b4cb24c863
-        <form onSubmit={this.loginUser}>
-        <strong>{this.props.message}</strong>
-=======
         <form onSubmit={this.loginUser} onKeyPress={this.enterOrEscape}>
+        <strong>{this.props.message}</strong>
         {(this.state.error) ? <strong> Something went wrong.  :-(  Please try again. </strong> : ""}
->>>>>>> fix enter behavior on login and create account views and add useful failure messages
           <label>Username
             <input  type="text"
                     placeholder="Mr. Meeple"

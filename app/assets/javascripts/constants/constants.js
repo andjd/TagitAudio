@@ -4,6 +4,7 @@
 
 
   TA.Constants = {
+    PODCAST_RECD: "new podcast",
     REQUIRE_LOGIN: "req login",
     PLAYBACK_CHANGE: "playback",
     EPISODES_RECD: "new episodes",
