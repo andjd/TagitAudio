@@ -1,7 +1,7 @@
 (function(root) {
   'use strict';
   var TA = root.TA = root.TA || {};
-  var Link = ReactRouter.Link
+  var Link = ReactRouter.Link;
 
   TA.EpisodeInfo = React.createClass ({
     getInitialState: function () {

@@ -1,5 +1,5 @@
 class Podcast < ActiveRecord::Base
-  require "rmagick"
+  # require "rmagick"
   include Magick
   MAX_EPISODES = 15
 
@@ -35,14 +35,25 @@ class Podcast < ActiveRecord::Base
 
   def self.digest_rss_feed(rss_url)
     return nil if Podcast.find_by_rss_url(rss_url)
-    
-    feed = Feedjira::Feed.fetch_and_parse(rss_url)
 
-    image = feed.itunes_image ? feed.itunes_image : nil
+    raw = Faraday.get(rss_url).body
+
+    feed = Feedjira::Feed.parse_with(Feedjira::Parser::ITunesRSS, raw)
+
+    image = (feed.respond_to? :itunes_image) ? feed.itunes_image : nil
+
+    if feed.respond_to? :itunes_summary
+      description = feed.itunes_summary
+    elsif feed.respond_to? :description
+      description = feed.description
+    else
+      description = nil
+    end
+
 
     p = Podcast.new(rss_url: rss_url,
                     title: feed.title,
-                    description: feed.itunes_summary,
+                    description: description,
                     image_url: image
                   )
     p.background_color = p.get_background_color
