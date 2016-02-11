@@ -136,12 +136,20 @@
       });
     },
 
-    addPodcast: function (url, successCB, errorCB) {
+    addPodcast: function (url, existingCB, acceptedCB, errorCB) {
       $.ajax("/api/podcasts", {
         method: "POST",
         data: {podcast: {rss_url: url}},
-        success: successCB,
+        statusCode: {202: acceptedCB, 302: existingCB },
         error: errorCB
+      });
+    },
+
+    checkPodcastStatus: function (url, foundCB, errorCB) {
+      $.ajax("/api/podcasts/status", {
+        method: "GET",
+        data: {podcast: {rss_url: url}},
+        statusCode: {302: foundCB, 422: errorCB}
       });
     },
 

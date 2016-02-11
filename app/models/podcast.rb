@@ -43,14 +43,11 @@ class Podcast < ActiveRecord::Base
 
     image = (feed.respond_to? :itunes_image) ? feed.itunes_image : nil
 
-    if feed.respond_to? :itunes_summary
-      description = feed.itunes_summary
-    elsif feed.respond_to? :description
-      description = feed.description
-    else
-      description = nil
-    end
+    i_sum = feed.itunes_summary if feed.respond_to? :itunes_summary
 
+    j_sum = feed.description if feed.respond_to? :description
+
+    description = i_sum || j_sum
 
     p = Podcast.new(rss_url: rss_url,
                     title: feed.title,
@@ -67,8 +64,11 @@ class Podcast < ActiveRecord::Base
     entires.times do |idx|
       p.add_episode feed.entries[idx]
     end
+    
+    logger.info "Podcast #{p.title} Added to Database"
     return p
-
+  rescue ArgumentError, Magick::ImageMagickError, URI::InvalidURIError
+    logger.error "Error occured trying to add Podcast URI \'#{rss_url}\' to DB"
   end
 
   def self.update_episodes
@@ -104,10 +104,14 @@ class Podcast < ActiveRecord::Base
   end
 
   def add_episode ep
+    k_sum = ep.itunes_summary if ep.respond_to? :itunes_summary
+    l_sum = ep.summary if ep.respond_to? :summary
+    ep_description = l_sum || k_sum || "no summary"
+
     e = self.episodes.new(title: ep.title,
                           mime_type: ep.enclosure_type,
                           feedjira_id: ep.entry_id,
-                          description: ep.summary || "no summary",
+                          description: ep_description
                           episode_url: ep.enclosure_url,
                           publication_date: ep.published,
                           duration: Podcast.secondify(ep.itunes_duration)

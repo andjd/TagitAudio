@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     end
     get "/users/availability/:username", to: "users#availability"
     get "/users/avatars", to: "users#avatars"
+    get "/podcasts/status", to: "podcasts#ready_yet?"
     resources :podcasts, only: [:create, :show] do
       resources :episodes, only: :index
     end

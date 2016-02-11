@@ -3,15 +3,25 @@
   var TA = root.TA = root.TA || {};
 
   TA.NewPodcastModal = React.createClass({
+    mixins: [ReactRouter.History],
     getInitialState: function() {
       return {feed: ""};
     },
     handleType: function(e) {
       this.setState({feed: e.currentTarget.value});
     },
+    handleAccepted: function() {
+      this.props.accepted(this.state.feed);
+    },
+    handleExisting: function(data) {
+      debugger
+      this.props.voidModal(null);
+      this.history.pushState(null, ("/podcasts/"+ data.responseText));
+    },
     submitPodcast: function(e) {
+      debugger
       e.preventDefault();
-      TA.AjaxUtil.API.addPodcast(this.state.feed, this.props.voidModal, this.tryAgain);
+      TA.AjaxUtil.API.addPodcast(this.state.feed, this.handleExisting, this.handleAccepted, this.tryAgain); //Second callback redirect to existing podcast page
     },
     tryAgain: function() {
       this.setState({error: true});
