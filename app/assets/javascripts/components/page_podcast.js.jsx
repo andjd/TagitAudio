@@ -9,6 +9,10 @@
       return {episodes: [], podcast: null};
     },
 
+    componentWillReceiveProps: function (newProps) {
+      TA.AjaxUtil.API.fetchPodcastAndEpisodes(newProps.params.splat);
+    },
+
     componentDidMount: function () {
       TA.AjaxUtil.API.fetchPodcastAndEpisodes(this.props.params.splat);
       TA.EpisodesStore.addListener(this.newEpisodes);
