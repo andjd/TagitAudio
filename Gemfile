@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.2.1'
 
-ruby '2.2.0'
 
 gem 'react-rails', '~> 1.3.0'
 gem 'flux-rails-assets', '~> 2.1.0'

@@ -1,6 +1,7 @@
 class Podcast < ActiveRecord::Base
   require "RMagick"
   include Magick
+  require 'set'
   MAX_EPISODES = 15
 
   validates :title, :description, :rss_url, presence: true
@@ -51,20 +52,33 @@ class Podcast < ActiveRecord::Base
 
 
     entires.times do |idx|
-      ep = feed.entries[idx]
-
-      e = p.episodes.new( title: ep.title,
-                          mime_type: ep.enclosure_type,
-                          feedjira_id: ep.entry_id,
-                          description: ep.summary,
-                          episode_url: ep.enclosure_url,
-                          publication_date: ep.published,
-                          duration: self.secondify(ep.itunes_duration)
-                        )
-      e.save!
+      p.add_episode feed.entries[idx]
     end
     return p
 
+  end
+
+  def self.update_episodes
+    Podcast.includes(:episodes).all.each do |pod|
+      feed = Feedjira::Feed.parse_with(Feedjira::Parser::ITunesRSS, Faraday.get(pod.rss_url).body)
+      episodes = pod.episodes.load
+      ids = Set.new(episodes.map(&:feedjira_id))
+      titles = Set.new(episodes.map(&:title))
+      urls = Set.new(episodes.map(&:episode_url))
+      count = 0
+      feed.entries.length.times do |idx|
+        ep = feed.entries[idx]
+
+        break if ids.include?(ep.entry_id) ||
+                 titles.include?(ep.title) ||
+                 urls.include?(ep.enclosure_url) ||
+                 count >= 15
+
+        pod.add_episode ep
+        count += 1
+      end
+    end
+    nil
   end
 
 
@@ -74,6 +88,18 @@ class Podcast < ActiveRecord::Base
     hue = nil
     small_i.each_pixel {|px| hue = px.to_hsla.first}
     return "hsl(#{hue}, 100%, 85%)"
+  end
+
+  def add_episode ep
+    e = self.episodes.new(title: ep.title,
+                          mime_type: ep.enclosure_type,
+                          feedjira_id: ep.entry_id,
+                          description: ep.summary || "no summary",
+                          episode_url: ep.enclosure_url,
+                          publication_date: ep.published,
+                          duration: Podcast.secondify(ep.itunes_duration)
+                      )
+    e.save!
   end
 
 
