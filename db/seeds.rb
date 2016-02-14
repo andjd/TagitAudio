@@ -17,7 +17,7 @@ Podcast.digest_rss_feed("http://thepartygamecast.libsyn.com/rss")
 # Podcast.digest_rss_feed("http://feeds.feedburner.com/BluePegPinkPeg")
 Podcast.digest_rss_feed("http://www.buzzsprout.com/20526.rss")
 Podcast.digest_rss_feed("http://bgpov.com/feed/podcast/")
-Podcast.digest_rss_feed("http://www.npr.org/templates/rss/podcast.php?id=344098539")
+# Podcast.digest_rss_feed("http://www.npr.org/templates/rss/podcast.php?id=344098539")
 
 
 Episode.all.each do |ep|

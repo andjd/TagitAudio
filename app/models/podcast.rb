@@ -1,5 +1,4 @@
 class Podcast < ActiveRecord::Base
-  # require "rmagick"
   include Magick
   require 'set'
   MAX_EPISODES = 15
@@ -47,7 +46,7 @@ class Podcast < ActiveRecord::Base
 
     j_sum = feed.description if feed.respond_to? :description
 
-    description = i_sum || j_sum
+    description = i_sum || j_sum || "no description"
 
     p = Podcast.new(rss_url: rss_url,
                     title: feed.title,
@@ -64,7 +63,7 @@ class Podcast < ActiveRecord::Base
     entires.times do |idx|
       p.add_episode feed.entries[idx]
     end
-    
+
     logger.info "Podcast #{p.title} Added to Database"
     return p
   rescue ArgumentError, Magick::ImageMagickError, URI::InvalidURIError
