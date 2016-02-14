@@ -25,7 +25,7 @@ Episode.all.each do |ep|
 
   num_ann.times do |i|
       secs = rand * ep.duration
-      ep.annotations.create!(user_id: (rand() * 8).to_i + 1, time: secs, body: "this is test annotation # #{i}")
+      ep.annotations.create!(user_id: (rand() * 10).to_i + 1, time: secs, body: "this is test annotation # #{i}")
     end
 end
 
