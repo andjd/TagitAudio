@@ -48,6 +48,9 @@ nav {
   font-size: 24px;
   border-radius: 0 0 5px 5px;
 }
+.nav {
+  float: left;
+}
 .nav-el {
   float: left;
   padding: 25px 0;
@@ -73,6 +76,7 @@ nav .nav-el:not(:last-child):after {
 
 .nav-btn-right {
   float: right;
+  margin: 17px 15px;
 }
 
 .avatar-selector {

@@ -48,7 +48,6 @@
 
     // componentDidUpdate: function () {
     //
-    //   debugger
     //   this.annotationBox.scrollTo(40)
     //
     // },

@@ -7,22 +7,25 @@
     getInitialState: function() {
       return {feed: ""};
     },
+
     handleType: function(e) {
       this.setState({feed: e.currentTarget.value});
     },
+
     handleAccepted: function() {
       this.props.accepted(this.state.feed);
     },
+
     handleExisting: function(data) {
-      debugger
       this.props.voidModal(null);
       this.history.pushState(null, ("/podcasts/"+ data.responseText));
     },
+
     submitPodcast: function(e) {
-      debugger
       e.preventDefault();
       TA.AjaxUtil.API.addPodcast(this.state.feed, this.handleExisting, this.handleAccepted, this.tryAgain); //Second callback redirect to existing podcast page
     },
+
     tryAgain: function() {
       this.setState({error: true});
     },
@@ -45,7 +48,7 @@
           <div className="modal-scrim"
                onClick={this.props.voidModal} />
           <div className="modal-content" >
-            <header className="top-bar modal-bar">
+            <header className="top-bar modal-bar group">
               <h1 className="logo group">
                 <span>Tagit</span>
                 <span>AUDIO</span>
@@ -62,7 +65,7 @@
 
               <div>
                 <button onClick={this.props.voidModal} className="button-cancel" >Cancel</button>
-                <button type="submit">Submit</button>
+                <button type="submit" disabled={(this.state.feed === "")}>Submit</button>
               </div>
             </form>
 

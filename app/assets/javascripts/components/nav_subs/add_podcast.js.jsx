@@ -18,6 +18,7 @@
     },
 
     handleClick: function() {
+      if (!TA.LoginUtil.userOrLogin()) {return;}
       switch (this.state.mode) {
       case "add":
         this.activateNewPodcastModal();
@@ -41,9 +42,10 @@
       i = setInterval(this.checkStatus, 20000);
       this.setState({modal: false, uri: uri, mode: "queued"});
     },
-    
-    voidModal: function() {
-      this.setState(this.getInitialState())
+
+    voidModal: function(e) {
+      e.preventDefault();
+      this.setState(this.getInitialState());
     },
 
     checkStatus: function() {

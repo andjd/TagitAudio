@@ -24,7 +24,7 @@
 
     render: function () {
       return (
-        <nav className="w">
+        <nav className="w group">
           <ol className="nav group">
             <li className={(this.state.active === TA.Constants.NAV.NEW) ? "nav-el active" : "nav-el"}>
               <Link to={"/" + TA.Constants.NAV.NEW}>Newest</Link>

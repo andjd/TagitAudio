@@ -110,7 +110,7 @@ class Podcast < ActiveRecord::Base
     e = self.episodes.new(title: ep.title,
                           mime_type: ep.enclosure_type,
                           feedjira_id: ep.entry_id,
-                          description: ep_description
+                          description: ep_description,
                           episode_url: ep.enclosure_url,
                           publication_date: ep.published,
                           duration: Podcast.secondify(ep.itunes_duration)
