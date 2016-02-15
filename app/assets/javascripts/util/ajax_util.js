@@ -18,8 +18,29 @@
       });
     },
 
+    fetchPodcastAndEpisodes: function(id) {
+      var t = setTimeout(TA.Actions.Loading.start, 200);
+      $.ajax(("api/podcasts/" + String(id)), {
+        method: "GET",
+        success: function (data) {
+          TA.Actions.API.recPodcast(data);
+          },
+      });
+
+      $.ajax(("/api/podcasts/" + String(id) + "/episodes"), {
+        method: "GET",
+        success: function (data) {
+          TA.Actions.API.recEpisodes(data);
+          },
+        complete: function (){
+          clearTimeout(t);
+          TA.Actions.Loading.clear();
+        }
+      });
+    },
+
     fetchEpisodes: function(mode) {
-      var t = setTimeout(TA.Actions.Loading.start, 125);
+      var t = setTimeout(TA.Actions.Loading.start, 200);
       $.ajax(("/api/episodes/" + mode), {
         method: "GET",
         data: {user: TA.CurrentUserStore.user() && TA.CurrentUserStore.user().id},
@@ -76,30 +97,34 @@
       } );
     },
 
-    login: function (params, cb) {
+    login: function (params, successCB, errorCB ){
       var t = setTimeout(TA.Actions.Loading.start, 250);
       $.ajax("/api/session", {
           method: "POST",
           data: {user: params},
           success: function (data) {
             TA.Actions.API.recCurrentUser(data);
+            successCB && successCB()
+          },
+          error: function () {
+            errorCB && errorCB();
           },
           complete: function () {
-            cb && cb();
-            clearTimeout(t)
+            clearTimeout(t);
             TA.Actions.Loading.clear();
           }
       });
     },
 
-    createUser: function (params, cb) {
+    createUser: function (params, successCB, errorCB) {
       $.ajax("/api/users", {
         method: "POST",
         data: {user: params},
         success: function (data) {
           TA.Actions.API.recCurrentUser(data);
-           cb && cb();
-        }
+           successCB && successCB();
+        },
+        error: errorCB
       });
     },
 
@@ -108,6 +133,23 @@
         method: "GET",
         success: successCB,
         error: errorCB
+      });
+    },
+
+    addPodcast: function (url, existingCB, acceptedCB, errorCB) {
+      $.ajax("/api/podcasts", {
+        method: "POST",
+        data: {podcast: {rss_url: url}},
+        statusCode: {202: acceptedCB, 302: existingCB },
+        error: errorCB
+      });
+    },
+
+    checkPodcastStatus: function (url, foundCB, errorCB) {
+      $.ajax("/api/podcasts/status", {
+        method: "GET",
+        data: {podcast: {rss_url: url}},
+        statusCode: {302: foundCB, 422: errorCB}
       });
     },
 

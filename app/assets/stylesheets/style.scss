@@ -75,6 +75,18 @@ input, textarea {
 
 }
 
+input::-webkit-input-placeholder {
+	color: $accent-hint;
+}
+input::-moz-placeholder {
+	color: $accent-hint;
+}
+
+input:-ms-input-placeholder {
+	color: $accent-hint;
+}
+
+
 button, .button {
   color: white;
   font-size: 13px;

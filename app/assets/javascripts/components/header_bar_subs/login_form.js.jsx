@@ -4,14 +4,9 @@
 
   TA.LoginForm = React.createClass ({
   getInitialState: function () {
-    return({username: "username", password: "password"});
+    return({});
   },
 
-  blankDefaults: function () {
-    var u = (this.state.username === "username") ? "" : this.state.username;
-    var p = (this.state.password === "password") ? "" : this.state.password;
-    this.setState({username: u, password: p});
-  },
 
   handleUsernameChange: function (e) {
     this.setState({username: e.currentTarget.value});
@@ -24,30 +19,49 @@
   loginUser: function () {
     TA.AjaxUtil.API.login({username: this.state.username,
                            password: this.state.password},
-                          this.props.voidModal);
+                          this.props.voidModal,
+                          this.tryAgain);
+
+  },
+
+  tryAgain: function() {
+    this.setState({error: true});
+  },
+
+  enterOrEscape: function(e) {
+    switch(e.charCode) {
+    case 13:
+      e.preventDefault();
+      e.stopPropagation();
+      this.loginUser();
+      break;
+    case 27:
+      this.props.voidModal();
+    }
 
   },
 
     render: function () {
       return(
-        <form onSubmit={this.loginUser}>
+        <form onSubmit={this.loginUser} onKeyPress={this.enterOrEscape}>
         <strong>{this.props.message}</strong>
+        {(this.state.error) ? <strong> Something went wrong.  :-(  Please try again. </strong> : ""}
           <label>Username
             <input  type="text"
+                    placeholder="Mr. Meeple"
                     value={this.state.username}
-                    onFocus={this.blankDefaults}
                     onChange={this.handleUsernameChange} />
           </label>
           <label>Password
             <input  type="password"
+                    placeholder="••••••••"
                     value={this.state.password}
-                    onFocus={this.blankDefaults}
                     onChange={this.handlePasswordChange} />
           </label>
 
           <div className="login-buttons">
             <button onClick={this.props.voidModal} className="button-cancel" >Cancel</button>
-            <button>Log In</button>
+            <button type="submit">Log In</button>
           </div>
         </form>
       );

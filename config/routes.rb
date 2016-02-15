@@ -1,5 +1,7 @@
+require 'sidekiq/web'
 Rails.application.routes.draw do
   root to: 'static_pages#root'
+  mount Sidekiq::Web, at: "/sidekiq"
   namespace :api, defaults: {format: :json} do
     resources :search, only: :index
     resource :session, only: [:show, :create, :destroy]
@@ -9,7 +11,10 @@ Rails.application.routes.draw do
     end
     get "/users/availability/:username", to: "users#availability"
     get "/users/avatars", to: "users#avatars"
-    resources :podcasts, only: :create
+    get "/podcasts/status", to: "podcasts#ready_yet?"
+    resources :podcasts, only: [:create, :show] do
+      resources :episodes, only: :index
+    end
     resources :annotions, only: :show
     resources :episodes, only: [:index, :show] do
       collection do

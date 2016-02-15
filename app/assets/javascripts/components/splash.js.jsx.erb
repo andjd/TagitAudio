@@ -1,4 +1,4 @@
-/* (function(root) {
+ (function(root) {
   'use strict';
   var TA = root.TA = root.TA || {};
   var Link = ReactRouter.Link;
@@ -34,7 +34,7 @@
   TA.SplashSub = React.createClass({
     render: function (){
       return (
-        <div className={"w splash-el-" + this.props.id (this.props.right) ? right : left}>
+        <div className={"w splash-el " + ((this.props.right) ? " right" : " left")}>
           <img src={this.props.image} alt="" />
           <h2>{this.props.text}</h2>
           <h3>{this.props.subtext}</h3>
@@ -46,4 +46,4 @@
   });
 
 
-}(this)); */
+}(this));

@@ -1,7 +1,7 @@
 (function(root) {
   'use strict';
   var TA = root.TA = root.TA || {};
-  var page = 0
+  var page = 0;
 
   TA.AvatarSelector = React.createClass ({
   	getInitialState: function() {
@@ -9,16 +9,16 @@
   	},
 
   	populateAvatars: function () {
-  		this.setState({avatars: this.shuffle(TA.AvatarStore.all())})
+  		this.setState({avatars: this.shuffle(TA.AvatarStore.all())});
   		if (!this.current) {setTimeout(this.newAvatars, 60);}
   	},
 
   	newAvatars: function () {
-  		this.setState({current: this.avatars(7)})
+  		this.setState({current: this.avatars(7)});
   	},
 
   	avatars: function(pageSize) {
-  		if (this.state.avatars && page * pageSize > this.state.avatars.length) {page = 0};
+  		if (this.state.avatars && page * pageSize > this.state.avatars.length) {page = 0;}
   		if (this.state.avatars) {
 	  		var newAvatars = this.state.avatars.slice(page * pageSize, ++page * pageSize);
 	  		this.setState({current: newAvatars});
@@ -60,9 +60,9 @@
 	  		<ul className="avatar-selector">
 	  			{this.state.current && this.state.current.map(function(avatarURL) {
 	  			  	return (<li key={avatarURL} className={(this.props.selected === avatarURL) ? "selected" : ""} >
-	  			  				<img className="avatar-img"	
-						  			  	src={avatarURL} 
-						  			  	active={(this.props.selected === avatarURL)} 
+	  			  				<img className="avatar-img"
+						  			  	src={avatarURL}
+						  			  	active={(this.props.selected === avatarURL)}
 						  			  	onClick={this.handleClick} />
 						  	</li>
 						  	);

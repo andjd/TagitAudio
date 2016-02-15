@@ -12,10 +12,17 @@
       });
     },
 
-      updateEpisodes: function (data) {
+    updateEpisodes: function (data) {
       TA.Dispatcher.dispatch ({
         actionType: TA.Constants.EPISODE_UPDATE,
         episode: data
+      });
+    },
+
+    recPodcast: function (data) {
+      TA.Dispatcher.dispatch ({
+        actionType: TA.Constants.PODCAST_RECD,
+        podcast: data
       });
     },
 
