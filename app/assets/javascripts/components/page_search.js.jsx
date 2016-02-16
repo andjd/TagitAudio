@@ -8,7 +8,7 @@
      mixins: [ReactRouter.History],
 
     getInitialState: function (){
-      return {episodes: [], search: "Try searching for 'Batman'", intervalID: null, page: 1};
+      return {episodes: [], search: "", intervalID: null, page: 1};
     },
 
     componentDidMount: function () {
@@ -38,10 +38,6 @@
       this.setState({search: searchTerms, intervalID: id, page: 1});
     },
 
-    clearDefault: function () {
-      if (this.state.search === "Search") {this.setState({search: "" });}
-    },
-
     // extra credit: extract into own component
     getNextPage: function () {
       var nextPage = this.state.page += 1;
@@ -54,7 +50,7 @@
     render: function () {
       return (
         <div className="search-wrapper w">
-          <input onFocus={this.clearDefault}
+          <input placeholder="Try searching for 'batman'"
                  value={this.state.search}
                  onChange={this.handleChange}
                  className="search" />
