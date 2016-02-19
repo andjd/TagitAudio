@@ -300,13 +300,18 @@ h3, h4, h5 {
   margin-bottom: 20px;
 }
 
-.progress-bar, .annotation-markerbar {
+.progress-bar, .progress-bar-past, .annotation-markerbar {
   margin: 0 10px 0 0;
 }
 
 .progress-bar {
   height: 3px;
   background-color: $accent-color;
+  overflow: hidden;
+}
+.progress-bar > div {
+  height: 100%;
+  background-color: $primary-color;
   overflow: hidden;
 }
 
