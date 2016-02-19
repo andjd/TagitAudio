@@ -92,7 +92,7 @@
           </div>
           <div className="player-bottom">
 
-            <TA.ProgressBar  episode={this.props.episode} />
+            <TA.ProgressBar  playbackPos={this.state.playbackPos} />
             <TA.Annotations  episode={this.props.episode}
                              duration={this.state.duration}
                              playbackPos={this.state.playbackPos}
